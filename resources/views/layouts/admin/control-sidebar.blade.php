@@ -29,7 +29,12 @@
 ><a href="{{ route('admin.subadmin.index') }}">Sub Admin</a></li>
 </ul>
 </li>
-
+<li  @if(in_array(Route::currentRouteName(), ['admin.vehicle.index']))
+{{ "class=current-page" }}
+@endif
+>
+<a href="{{ route('admin.vehicle.index') }}"><i class="fa fa-truck"></i>Vehicle Management</a>
+</li>
 <li  @if(in_array(Route::currentRouteName(), ['admin.notification.index']))
 {{ "class=current-page" }}
 @endif

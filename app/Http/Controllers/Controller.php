@@ -12,7 +12,6 @@ use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use LaravelFCM\Facades\FCM;
-use App\Models\UserBookingDetail;
 use App\Models\OauthAccessToken;
 use App\Models\User;
 use Carbon\Carbon;
@@ -29,15 +28,15 @@ class Controller extends BaseController {
         return $nCount;
     }
 
-    public function bookBeforeCheckInDate($userId) {
-        $booking = UserBookingDetail::where("check_in", "<=", date("Y-m-d H:i:s"))
-                ->where("check_out", ">=", date("Y-m-d H:i:s"))
-                ->where("user_id", $userId)
-                ->where("is_cancelled", 0)
-                ->orderBy("check_out", "ASC")
-                ->first();
-        return $booking ? true : false;
-    }
+    // public function bookBeforeCheckInDate($userId) {
+    //     $booking = UserBookingDetail::where("check_in", "<=", date("Y-m-d H:i:s"))
+    //             ->where("check_out", ">=", date("Y-m-d H:i:s"))
+    //             ->where("user_id", $userId)
+    //             ->where("is_cancelled", 0)
+    //             ->orderBy("check_out", "ASC")
+    //             ->first();
+    //     return $booking ? true : false;
+    // }
 
     public function sendSuccessResponse($message, $data) {
         return response()->json([

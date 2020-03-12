@@ -63,6 +63,19 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
     // Route::match(['get', 'post'], 'user-booking-edit/{id}', 'UsersController@bookingEdit')->name('admin.users.booking-edit');
     // Route::match(['get', 'post'], 'user-booking-verify/{id}', 'UsersController@verifyBooking')->name('admin.users.booking-verify');
     // Route::match(['get', 'post'], 'user-early-checkout/{id}', 'UsersController@earlyCheckout')->name('admin.users.early-checkout');
+
+       /**
+     * Vehicle Management
+     */
+    Route::prefix('vehicle')->group(function() {
+        Route::get('/', 'VehicleController@index')->name('admin.vehicle.index');
+        Route::get('/vehicle-list', 'VehicleController@vehicleList')->name('admin.vehicle.list');
+        Route::match(['get', 'post'], '/add-vehicle', 'VehicleController@addVehicle')->name('admin.vehicle.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'VehicleController@editVehicle')->name('admin.vehicle.edit');
+    });
+
+
+
     /**
      * Staff Management
      */
@@ -161,6 +174,17 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
         // Route::post('/amenity-list', 'StaffController@getAmenities')->name('subadmin.staff.amenity-list');
         Route::post('/staff-duty-status', 'StaffController@updateUserDutyStatus')->name('admin.staff.duty-status');
     });
+
+           /**
+     * Vehicle Management
+     */
+    // Route::prefix('vehicle')->group(function() {
+    //     Route::get('/', 'VehicleController@index')->name('admin.vehicle.index');
+    //     Route::get('/vehicle-list', 'VehicleController@vehicleList')->name('admin.vehicle.list');
+    //     Route::match(['get', 'post'], '/add-vehicle', 'VehicleController@addVehicle')->name('admin.vehicle.add');
+    //     Route::match(['get', 'post'], '/edit/{id}', 'VehicleController@editVehicle')->name('admin.vehicle.edit');
+    // });
+
     /**
      * Notification Management
      */
