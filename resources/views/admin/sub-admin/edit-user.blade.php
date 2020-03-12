@@ -16,9 +16,15 @@
                 <form class="form-horizontal form-label-left" action="{{ route('admin.subadmin.edit', $user->id) }}" method="post" id="editSubadminForm">
                     @csrf
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Name*</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ $user->user_name }}" type="text" class="form-control" placeholder="Name" name="name" id="name">
+                            <input type="text" value="{{ $user->first_name }}" class="form-control" placeholder="First Name" name="f_name" id="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name*</label>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <input type="text" value="{{ $user->last_name }}" class="form-control" placeholder="Last Name" name="l_name" id="name">
                         </div>
                     </div>
                     <div class="form-group">
@@ -27,23 +33,7 @@
                             <input value="{{ $user->email_id }}" type="text" class="form-control" placeholder="Email" name="email" id="email">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Resort Name*</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <select class="form-control" name="resort_id" id="resort_id">
-                                <option value="">Choose option</option>
-                                @if($resorts)
-                                @foreach($resorts as $resort)
-                                <option value="{{ $resort->id }}"
-                                        @if(isset($userBooking->resort->id) && ($userBooking->resort->id == $resort->id))
-                                        {{ "selected" }}
-                                        @endif
-                                        >{{ $resort->name }}</option>
-                                @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Menu's</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">

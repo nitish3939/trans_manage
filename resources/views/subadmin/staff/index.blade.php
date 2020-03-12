@@ -21,8 +21,6 @@
                             <th>Name</th>
                             <th>EmailAddress</th>
                             <th>PhoneNo.</th>
-                            <th>Duty Status</th>
-                            <!--<th>Resort Name</th>-->
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -45,6 +43,10 @@
             processing: true,
             serverSide: true,
             stateSave: true,
+            language: {
+                'loadingRecords': '&nbsp;',
+                'processing': '<i class="fa fa-refresh fa-spin"></i>'
+            },
             ajax: _baseUrl + "/sub-admin/staff/staff-list",
             "columns": [
                 {"data": null,
@@ -55,18 +57,6 @@
                 {"data": "name", sortable: false},
                 {"data": "email", sortable: false},
                 {"data": "mobileno", sortable: false},
-                {"data": "is_push_on", sortable: false,
-                    render: function (data, type, row, meta) {
-//                        var status = '';
-//                        if (row['is_push_on'] == 1) {
-//                            status = "<button type='button' class='btn btn-xs btn-round btn-success'>On Duty</button>";
-//                        } else {
-//                            status = "<button type='button' class='btn btn-xs btn-round btn-danger'>Off Duty</button>";
-//                        }
-                        return row['is_push_on'];
-                    }
-                },
-//                {"data": "resort_name"},
                 {"data": null,
                     sortable: false,
                     render: function (data, type, row, meta) {
@@ -81,6 +71,8 @@
                 },
             ]
         });
+
+
 
         $.ajaxSetup({
             headers: {

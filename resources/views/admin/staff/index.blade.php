@@ -21,8 +21,6 @@
                             <th>Name</th>
                             <th>EmailAddress</th>
                             <th>PhoneNo.</th>
-                            <th>Resort Name</th>
-                            <th>Duty Status</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -59,12 +57,6 @@
                 {"data": "name", sortable: false},
                 {"data": "email", sortable: false},
                 {"data": "mobileno", sortable: false},
-                {"data": "resort_name", sortable: false},
-                {"data": "is_push_on", sortable: false,
-                    render: function (data, type, row, meta) {
-                        return row['is_push_on'];
-                    }
-                },
                 {"data": null,
                     sortable: false,
                     render: function (data, type, row, meta) {
@@ -80,6 +72,14 @@
             ]
         });
 
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).on("click", ".user_status", function () {
 
             var record_id = this.id;
@@ -91,19 +91,17 @@
                 type: 'post',
                 data: {status: update_status, record_id: record_id},
                 dataType: 'json',
-                beforeSend: function () {
-                    $(".overlay").show();
-                },
                 success: function (res) {
 
                     if (res.status)
                     {
                         th.attr('data-status', res.data.status);
-                        showSuccessMessage(res.data.message);
-                        $(".overlay").hide();
-                    } else {
-                        showErrorMessage(res.message);
-                        $(".overlay").hide();
+                        $(".msg").addClass("alert-success");
+                        $(".msg").html(res.data.message);
+                        $(".msg").css("display", "block");
+                        setTimeout(function () {
+                            $(".msg").fadeOut();
+                        }, 5000);
                     }
                 }
             });

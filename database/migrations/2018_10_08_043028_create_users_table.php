@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration {
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('otp')->nullable();
-            $table->enum('gender', ['M', 'F'])->nullable();
             $table->bigInteger('user_type_id')->default(0);
             $table->string('email_id')->nullable();
             $table->dateTime('date_of_birth')->nullable();

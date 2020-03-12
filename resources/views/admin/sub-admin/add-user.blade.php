@@ -15,9 +15,15 @@
                 <form class="form-horizontal form-label-left" action="{{ route('admin.subadmin.add') }}" method="post" id="addSubadminForm">
                     @csrf
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Name*</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ old('name') }}" type="text" class="form-control" placeholder="Name" name="name" id="name">
+                            <input type="text" class="form-control" placeholder="First Name" name="f_name" id="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name*</label>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <input type="text" class="form-control" placeholder="Last Name" name="l_name" id="name">
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,23 +42,6 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <input value="{{ old('confirm_password') }}" type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Resort Name*</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <select class="form-control" name="resort_id" id="resort_id">
-                                <option value="">Choose option</option>
-                                @if($resorts)
-                                @foreach($resorts as $resort)
-                                <option value="{{ $resort->id }}"
-                                        @if(old('staff_email') == $resort->id)
-                                        {{ "slected" }}
-                                        @endif
-                                        >{{ $resort->name }}</option>
-                                @endforeach
-                                @endif
-                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -111,9 +100,6 @@
                 confirm_password: {
                     required: true,
                     equalTo: "#password"
-                },
-                resort_id: {
-                    required: true
                 },
                 "menu_ids[]": {
                     required: function () {

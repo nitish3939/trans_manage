@@ -20,7 +20,6 @@
                             <th>Sr.No.</th>
                             <th>Name</th>
                             <th>EmailAddress</th>
-                            <th>Resort Name</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -56,7 +55,6 @@
                 },
                 {"data": "name", sortable: false},
                 {"data": "email", sortable: false},
-                {"data": "resort_name", sortable: false},
                 {"data": null,
                     sortable: false,
                     render: function (data, type, row, meta) {
