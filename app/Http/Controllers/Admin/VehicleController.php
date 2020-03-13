@@ -9,6 +9,9 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 // use Carbon\Carbon;
 use App\Models\Vehicle;
+use App\Models\VehicleIssue;
+use App\Models\User;
+use App\Models\VehicleIssuePart;
 use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller {
@@ -60,7 +63,7 @@ class VehicleController extends Controller {
                 $usersArray[$i]['vehicle_owner_name'] = $user->vehicle_owner_name;
                 $usersArray[$i]['rc_no'] = $user->rc_no;
                 $usersArray[$i]['vehicle_no'] = $user->vehicle_no;
-                $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.vehicle.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
+                $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.vehicle.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('admin.vehicle.issue', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Issue</a>';
                 $i++;
             }
             $data['data'] = $usersArray;
@@ -70,7 +73,27 @@ class VehicleController extends Controller {
         }
     }
 
-    // public function viewUser(Request $request, $id) {
+    public function issueViewVehicle(Request $request, $id) {
+        try {
+            $vehicl = VehicleIssue::find($id);
+            $user = User::where('id',$vehicl->user_id)->first();
+            $parts = VehicleIssuePart::where('vehicle_issue_id',$id)->get();
+            $veh = Vehicle::where('id',$vehicl->vehicle_id)->first();
+            $css = [
+                "vendors/iCheck/skins/flat/green.css",
+            ];
+            $js = [
+                'vendors/iCheck/icheck.min.js',
+            ];
+            return view('admin.vehicle.issueView', ["vehicle" => $vehicl,'css' => $css,
+            'js' => $js, 'user' => $user, 'parts' => $parts, 'veh' => $veh,
+]);
+        } catch (Exception $ex) {
+            dd($e);
+        }
+    }
+
+    // public function issueEditVehicle(Request $request, Vehicle $vehicle) {
     //     try {
     //         $user = $this->user->find($id);
     //         return view('admin.users.user-detail', ["user" => $user]);
@@ -78,6 +101,8 @@ class VehicleController extends Controller {
     //         dd($e);
     //     }
     // }
+
+
 
     public function addVehicle(Request $request) {
         try {
@@ -141,6 +166,55 @@ class VehicleController extends Controller {
             ]);
         } catch (\Exception $ex) {
             return redirect()->route('admin.vehicle.index')->with('error', $ex->getMessage());
+        }
+    }
+
+    public function issueVehicle(Request $request, $id) {
+        try {
+
+            $query = VehicleIssue::query();
+            $query->where('vehicle_id',$id)->with(['vehicle','user']);
+            // // $query->where("user_type_id", "=", 2);
+            // if ($searchKeyword) {
+            //     $query->where(function($query) use($searchKeyword) {
+            //         $query->where("vehicle_owner_name", "LIKE", "%$searchKeyword%")->orWhere("rc_no", "LIKE", "%$searchKeyword%")->orWhere("vehicle_no", "LIKE", "%$searchKeyword%");
+            //     });
+            // }
+
+            // $data['recordsTotal'] = $query->count();
+            // $data['recordsFiltered'] = $query->count();
+            $vehicles = $query->latest()->get();
+
+            $i = 0;
+            $usersArray = [];
+            foreach ($vehicles as $user) {
+                $usersArray[$i]['id'] = $user->id;
+                $usersArray[$i]['user_name'] = $user->user->first_name;
+                $usersArray[$i]['vehicle_no'] = $user->vehicle->vehicle_no;
+                $usersArray[$i]['issue_date'] = $user->issue_date;
+                $usersArray[$i]['mechanic_name'] = $user->mechnic_name;
+                $usersArray[$i]['charge'] = $user->total_charge;
+                $usersArray[$i]['view-deatil'] = '<a class="btn btn-danger btn-xs" href="' . route('admin.vehicle.issueView', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>View</a>';
+                $i++;
+            }
+            $data['data'] = $usersArray;
+
+            $css = [
+                "vendors/iCheck/skins/flat/green.css",
+            ];
+            $js = [
+                'vendors/iCheck/icheck.min.js',
+            ];
+            $vehic = Vehicle::where('id',$id)->first();
+            return view('admin.vehicle.issue', [
+                'css' => $css,
+                'js' => $js,
+                'usersArray' => $usersArray,
+                'vehicle'=> $vehic,
+                    ]
+            );
+        } catch (Exception $ex) {
+            dd($e);
         }
     }
 

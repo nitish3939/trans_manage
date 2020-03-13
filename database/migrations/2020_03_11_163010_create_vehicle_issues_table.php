@@ -17,7 +17,7 @@ class CreateVehicleIssuesTable extends Migration
             $table->increments('id');
             $table->bigInteger('user_id');
             $table->bigInteger('vehicle_id');
-            $table->dateTime('issue_date')->nullable();
+            $table->date('issue_date')->nullable();
             $table->string('issue_name')->nullable();
             $table->string('mechnic_name')->nullable();
             $table->string('labour_charge')->nullable();

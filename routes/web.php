@@ -72,6 +72,8 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::get('/vehicle-list', 'VehicleController@vehicleList')->name('admin.vehicle.list');
         Route::match(['get', 'post'], '/add-vehicle', 'VehicleController@addVehicle')->name('admin.vehicle.add');
         Route::match(['get', 'post'], '/edit/{id}', 'VehicleController@editVehicle')->name('admin.vehicle.edit');
+        Route::match(['get', 'post'], '/issue/{id}', 'VehicleController@issueVehicle')->name('admin.vehicle.issue');
+        Route::match(['get', 'post'], '/issueView/{id}', 'VehicleController@issueViewVehicle')->name('admin.vehicle.issueView');
     });
 
 

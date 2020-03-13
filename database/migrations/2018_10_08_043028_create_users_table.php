@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
             $table->string('otp')->nullable();
             $table->bigInteger('user_type_id')->default(0);
             $table->string('email_id')->nullable();
-            $table->dateTime('date_of_birth')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->string('profile_pic_path')->nullable();
             $table->string('account_holder_name')->nullable();
             $table->bigInteger('bank_account_no')->nullable();
