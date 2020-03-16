@@ -64,7 +64,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
     // Route::match(['get', 'post'], 'user-booking-verify/{id}', 'UsersController@verifyBooking')->name('admin.users.booking-verify');
     // Route::match(['get', 'post'], 'user-early-checkout/{id}', 'UsersController@earlyCheckout')->name('admin.users.early-checkout');
 
-       /**
+    /**
      * Vehicle Management
      */
     Route::prefix('vehicle')->group(function() {
@@ -186,6 +186,18 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
     //     Route::match(['get', 'post'], '/add-vehicle', 'VehicleController@addVehicle')->name('admin.vehicle.add');
     //     Route::match(['get', 'post'], '/edit/{id}', 'VehicleController@editVehicle')->name('admin.vehicle.edit');
     // });
+
+        /**
+     * Vehicle Management
+     */
+    Route::prefix('vehicle')->group(function() {
+        Route::get('/', 'VehicleController@index')->name('subadmin.vehicle.index');
+        Route::get('/vehicle-list', 'VehicleController@vehicleList')->name('subadmin.vehicle.list');
+        Route::match(['get', 'post'], '/add-vehicle', 'VehicleController@addVehicle')->name('subadmin.vehicle.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'VehicleController@editVehicle')->name('subadmin.vehicle.edit');
+        Route::match(['get', 'post'], '/issue/{id}', 'VehicleController@issueVehicle')->name('subadmin.vehicle.issue');
+        Route::match(['get', 'post'], '/issueView/{id}', 'VehicleController@issueViewVehicle')->name('subadmin.vehicle.issueView');
+    });
 
     /**
      * Notification Management

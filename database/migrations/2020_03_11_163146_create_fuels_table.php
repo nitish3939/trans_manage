@@ -20,8 +20,6 @@ class CreateFuelsTable extends Migration
             $table->bigInteger('vehicle_id');
             $table->string('fuel_bill_image')->nullable();
             $table->bigInteger('payment')->nullable();
-            $table->string('start_meter')->nullable();
-            $table->string('end_meter')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();
         });
