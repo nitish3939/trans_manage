@@ -76,6 +76,15 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::match(['get', 'post'], '/issueView/{id}', 'VehicleController@issueViewVehicle')->name('admin.vehicle.issueView');
     });
 
+    /**
+     * Client Management
+     */
+    Route::prefix('client')->group(function() {
+        Route::get('/', 'ClientController@index')->name('admin.client.index');
+        Route::get('/client-list', 'ClientController@clientList')->name('admin.client.list');
+        Route::match(['get', 'post'], '/add-client', 'ClientController@addClient')->name('admin.client.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'ClientController@editClient')->name('admin.client.edit');
+    });
 
 
     /**
