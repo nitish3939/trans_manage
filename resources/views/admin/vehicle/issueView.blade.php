@@ -11,7 +11,7 @@
             </div>
             <div class="x_content">
                 <br>
-                <form class="form-horizontal form-label-left" action="#" method="post" id="addStaffForm" enctype="multipart/form-data">
+                <form class="form-horizontal form-label-left" action="{{ route('admin.vehicle.issueView',$vehicle->id) }}" method="post" id="addStaffForm" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <div class="form-group">
@@ -34,15 +34,15 @@
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Address</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Issue Name</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Address" name="address" id="address" value="{{$vehicle->address}}">
+                            <input type="text" class="form-control" placeholder="Issue Name" name="issue_name" id="issue_name" value="{{$vehicle->issue_name}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Mechanic Name</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" value="{{$vehicle->mechnic_name}}" name="mechanic" id="mechanic">
+                            <input type="text" class="form-control" placeholder="Mechanic Name" value="{{$vehicle->mechnic_name}}" name="mechanic" id="mechanic">
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Charge</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" name="total_charge" id="total_charge" value="{{$vehicle->total_charge}}">
+                            <input type="number" class="form-control" name="total_charge" id="total_charge" value="{{$vehicle->total_charge}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,26 +73,66 @@
                         <thead>
                             <tr>
                                 <th>Sr.No.</th>
-                                <th>Damage Part Name/th>
+                                <th>Damage Part Name</th>
                                 <th>Cost Per Part</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if($parts)
-                            @foreach($parts as $k => $v)
+
                             <tr>
-                                <td>{{ $k+1 }}</td>
-                                <td>{{ $v->damage_part_name }}</td>
-                                <td>{{ $v->cost_part }}</td>
+                                <td>{{ 1 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_1" id="damage_part_name_1" value="{{ $vehicle->damage_part_name_1 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_1" id="cost_part_1" value="{{ $vehicle->cost_part_1 }}"></td>
                             </tr>
-                            @endforeach
-                            @endif
+
+                            <tr>
+                                <td>{{ 2 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_2" id="damage_part_name_2" value="{{ $vehicle->damage_part_name_2 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_2" id="cost_part_2" value="{{ $vehicle->cost_part_2 }}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ 3 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_3" id="damage_part_name_3" value="{{ $vehicle->damage_part_name_3 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_3" id="cost_part_3" value="{{ $vehicle->cost_part_3 }}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ 4 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_4" id="damage_part_name_4" value="{{ $vehicle->damage_part_name_4 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_4" id="cost_part_4" value="{{ $vehicle->cost_part_4 }}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ 5 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_5" id="damage_part_name_5" value="{{ $vehicle->damage_part_name_5 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_5" id="cost_part_5" value="{{ $vehicle->cost_part_5 }}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ 6 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_6" id="damage_part_name_6" value="{{ $vehicle->damage_part_name_6 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_6" id="cost_part_6" value="{{ $vehicle->cost_part_6 }}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ 7 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_7" id="damage_part_name_7" value="{{ $vehicle->damage_part_name_7 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_7" id="cost_part_7" value="{{ $vehicle->cost_part_7 }}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ 8 }}</td>
+                                <td><input type="text" class="form-control" name="damage_part_name_8" id="damage_part_name_8" value="{{ $vehicle->damage_part_name_8 }}"></td>
+                                <td><input type="number" class="form-control" name="cost_part_8" id="cost_part_8" value="{{ $vehicle->cost_part_8 }}"></td>
+                            </tr>
+
                         </tbody>
                     </table>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                            <a  class="btn btn-default" href="{{ route('subadmin.staff.index') }}">Cancel</a>
+                            <a  class="btn btn-default" href="{{ route('admin.vehicle.issueView',$vehicle->id) }}">Cancel</a>
                             <button type="submit" class="btn btn-success">Update</button>
                         </div>
                     </div>

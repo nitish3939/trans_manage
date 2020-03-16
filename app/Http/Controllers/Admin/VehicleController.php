@@ -75,18 +75,63 @@ class VehicleController extends Controller {
 
     public function issueViewVehicle(Request $request, $id) {
         try {
-            $vehicl = VehicleIssue::find($id);
-            $user = User::where('id',$vehicl->user_id)->first();
-            $parts = VehicleIssuePart::where('vehicle_issue_id',$id)->get();
-            $veh = Vehicle::where('id',$vehicl->vehicle_id)->first();
+            $vehicle = VehicleIssue::find($id);
+            if ($request->isMethod("post")) {
+
+                $vehicle->issue_name = $request->issue_name;
+                $vehicle->mechnic_name = $request->mechanic;
+                $vehicle->labour_charge = $request->labour_charge;
+
+                $vehicle->total_charge = $request->total_charge;
+                 if ($request->hasFile("bill_image")) {
+                        $bill_image = $request->file("bill_image");
+                        $bill = Storage::disk('public')->put('bill_image', $bill_image);
+                        $bill_file_name = basename($bill);
+                        $user->bill_image = $bill_file_name;
+                    }
+
+                $vehicle->damage_part_name_1 = $request->damage_part_name_1;
+                $vehicle->cost_part_1 = $request->cost_part_1;
+
+                $vehicle->damage_part_name_2 = $request->damage_part_name_2;
+                $vehicle->cost_part_2 = $request->cost_part_2;
+
+                $vehicle->damage_part_name_3 = $request->damage_part_name_3;
+                $vehicle->cost_part_3 = $request->cost_part_3;
+
+                $vehicle->damage_part_name_4 = $request->damage_part_name_4;
+                $vehicle->cost_part_4 = $request->cost_part_4;
+
+                $vehicle->damage_part_name_5 = $request->damage_part_name_5;
+                $vehicle->cost_part_5 = $request->cost_part_5;
+
+                $vehicle->damage_part_name_6 = $request->damage_part_name_6;
+                $vehicle->cost_part_6 = $request->cost_part_6;
+
+                $vehicle->damage_part_name_7 = $request->damage_part_name_7;
+                $vehicle->cost_part_7 = $request->cost_part_7;
+
+                $vehicle->damage_part_name_8 = $request->damage_part_name_8;
+                $vehicle->cost_part_8 = $request->cost_part_8;
+
+                if ($vehicle->save()) {
+                    return redirect()->route('admin.vehicle.index')->with('status', 'Vehicle Issue has been updated successfully.');
+                } else {
+                    return redirect()->route('admin.vehicle.index', $id)->with('error', 'Something went be wrong.');
+                }
+            }
+            $user = User::where('id',$vehicle->user_id)->first();
+            // $parts = VehicleIssuePart::where('vehicle_issue_id',$id)->get();
+            $veh = Vehicle::where('id',$vehicle->vehicle_id)->first();
             $css = [
                 "vendors/iCheck/skins/flat/green.css",
             ];
             $js = [
                 'vendors/iCheck/icheck.min.js',
             ];
-            return view('admin.vehicle.issueView', ["vehicle" => $vehicl,'css' => $css,
-            'js' => $js, 'user' => $user, 'parts' => $parts, 'veh' => $veh,
+            return view('admin.vehicle.issueView', ["vehicle" => $vehicle
+            ,'css' => $css,
+            'js' => $js, 'user' => $user, 'veh' => $veh,
 ]);
         } catch (Exception $ex) {
             dd($e);
