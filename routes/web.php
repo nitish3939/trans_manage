@@ -77,6 +77,15 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
     });
 
     /**
+     * Challan Management
+     */
+    Route::prefix('challan')->group(function() {
+        Route::get('/', 'ChallanController@index')->name('admin.challan.index');
+        Route::get('/challan-list', 'ChallanController@challanList')->name('admin.challan.list');
+        // Route::match(['get', 'post'], '/add-challan', 'ChallanController@addVehicle')->name('admin.challan.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'ChallanController@editChallan')->name('admin.challan.edit');
+    });
+    /**
      * Client Management
      */
     Route::prefix('client')->group(function() {

@@ -16,7 +16,7 @@ class CreateChallansTable extends Migration
         Schema::create('challans', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('user_id');
-            $table->bigInteger('vehicle_id');
+            $table->bigInteger('vehicle_id')->nullable();
             $table->bigInteger('challan_no')->nullable();
             $table->string('challan_place')->nullable();
             $table->bigInteger('challan_amount')->nullable();

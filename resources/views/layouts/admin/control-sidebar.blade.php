@@ -41,7 +41,12 @@
 >
 <a href="{{ route('admin.vehicle.index') }}"><i class="fa fa-truck"></i>Vehicle Management</a>
 </li>
-
+<li  @if(in_array(Route::currentRouteName(), ['admin.challan.index']))
+{{ "class=current-page" }}
+@endif
+>
+<a href="{{ route('admin.challan.index') }}"><i class="fa fa-truck"></i>Challan Management</a>
+</li>
 <li  @if(in_array(Route::currentRouteName(), ['admin.notification.index']))
 {{ "class=current-page" }}
 @endif
