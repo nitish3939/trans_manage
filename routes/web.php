@@ -85,6 +85,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         // Route::match(['get', 'post'], '/add-challan', 'ChallanController@addVehicle')->name('admin.challan.add');
         Route::match(['get', 'post'], '/edit/{id}', 'ChallanController@editChallan')->name('admin.challan.edit');
     });
+
     /**
      * Client Management
      */
@@ -93,6 +94,16 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::get('/client-list', 'ClientController@clientList')->name('admin.client.list');
         Route::match(['get', 'post'], '/add-client', 'ClientController@addClient')->name('admin.client.add');
         Route::match(['get', 'post'], '/edit/{id}', 'ClientController@editClient')->name('admin.client.edit');
+    });
+
+   /**
+     * Trip Management
+     */
+    Route::prefix('trip')->group(function() {
+        Route::get('/', 'TripController@index')->name('admin.trip.index');
+        Route::get('/trip-list', 'TripController@tripList')->name('admin.trip.list');
+        Route::match(['get', 'post'], '/add-trip', 'TripController@addTrip')->name('admin.trip.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'TripController@editTrip')->name('admin.trip.edit');
     });
 
 

@@ -17,6 +17,7 @@ class CreateTripsTable extends Migration
             $table->increments('id');
             $table->bigInteger('user_id');
             $table->bigInteger('vehicle_id');
+            $table->date('trip_date');
             $table->string('start_trip')->nullable();
             $table->string('fuel_entry')->nullable();
             $table->string('end_trip')->nullable();
