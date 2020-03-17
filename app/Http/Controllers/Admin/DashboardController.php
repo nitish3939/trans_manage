@@ -6,17 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Resort;
-use App\Models\RoomType;
-use App\Models\ResortRoom;
-use App\Models\UserBookingDetail;
+use App\Models\Vehicle;
 
 class DashboardController extends Controller {
 
     public function index() {
-        $activeUser = User::where(["is_active" => 1, "user_type_id" => 3])->count();
-        $activeStaff = User::where(["is_active" => 1, "user_type_id" => 2])->count();
-        $inactiveUser = User::where(["is_active" => 0, "user_type_id" => 3])->count();
+        $vehicle = Vehicle::count();
+        $driver = User::where(["is_active" => 1, "user_type_id" => 2])->count();
+        $staff = User::where(["is_active" => 1, "user_type_id" => 5])->count();
         $inactiveStaff = User::where(["is_active" => 0, "user_type_id" => 2])->count();
 
         $css = [
@@ -28,9 +25,9 @@ class DashboardController extends Controller {
         ];
 
         return view('admin.dashboard.dashboard', [
-            "activeUser" => $activeUser,
-            "activeStaff" => $activeStaff,
-            "inactiveUser" => $inactiveUser,
+            "activeUser" => $vehicle,
+            "activeStaff" => $driver,
+            "inactiveUser" => $staff,
             "inactiveStaff" => $inactiveStaff,
             "js" => $js,
             "css" => $css
