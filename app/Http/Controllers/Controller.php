@@ -171,59 +171,59 @@ class Controller extends BaseController {
         return true;
     }
 
-    public function invalidateAllUsertokens($userId) {
-        $userTokens = OauthAccessToken::where(["user_id" => $userId, "revoked" => 0])->get();
-        if ($userTokens) {
-            foreach ($userTokens as $userToken) {
-                $userToken->revoked = 1;
-                $userToken->save();
-            }
-        }
-        return true;
-    }
+//     public function invalidateAllUsertokens($userId) {
+//         $userTokens = OauthAccessToken::where(["user_id" => $userId, "revoked" => 0])->get();
+//         if ($userTokens) {
+//             foreach ($userTokens as $userToken) {
+//                 $userToken->revoked = 1;
+//                 $userToken->save();
+//             }
+//         }
+//         return true;
+//     }
 
-    public function cleanDeviceToken($deviceId, $userType) {
-        User::where(['device_id' => $deviceId, "user_type_id" => $userType])->update(['device_token' => ""]);
-        return true;
-    }
+//     public function cleanDeviceToken($deviceId, $userType) {
+//         User::where(['device_id' => $deviceId, "user_type_id" => $userType])->update(['device_token' => ""]);
+//         return true;
+//     }
 
-    public function androidBookingPushNotification($title, $message, $token, $count) {
-        //Fro customer
-        config(['fcm.http.server_key' => 'AAAAZDeprME:APA91bHyGVMy54RTPTZKyj-gsF5L31IsHP0efkEm4RorsITp-yH2Syh-ftIuuaIu2zm7zZpJZp_CBmY4B33yahx1uZWG570_z6bJ9OxnuX2_Zzh9NFwVbtYKANXRh7SpsQZPq328Y-Jj']);
-        config(['fcm.http.sender_id' => '430430596289']);
+//     public function androidBookingPushNotification($title, $message, $token, $count) {
+//         //Fro customer
+//         config(['fcm.http.server_key' => 'AAAAZDeprME:APA91bHyGVMy54RTPTZKyj-gsF5L31IsHP0efkEm4RorsITp-yH2Syh-ftIuuaIu2zm7zZpJZp_CBmY4B33yahx1uZWG570_z6bJ9OxnuX2_Zzh9NFwVbtYKANXRh7SpsQZPq328Y-Jj']);
+//         config(['fcm.http.sender_id' => '430430596289']);
 
 
-        $optionBuilder = new OptionsBuilder();
-        $optionBuilder->setTimeToLive(60 * 20)
-                ->setPriority('high')
-        ;
+//         $optionBuilder = new OptionsBuilder();
+//         $optionBuilder->setTimeToLive(60 * 20)
+//                 ->setPriority('high')
+//         ;
 
-        $notificationBuilder = new PayloadNotificationBuilder($title);
-        $notificationBuilder->setBody($message)
-                ->setSound('notificationso.mp3')
-                ->setBadge($count)
-                ->setClickAction("com.rindex.customer.CheckIn.CheckInActivity")
-        ;
+//         $notificationBuilder = new PayloadNotificationBuilder($title);
+//         $notificationBuilder->setBody($message)
+//                 ->setSound('notificationso.mp3')
+//                 ->setBadge($count)
+//                 ->setClickAction("com.rindex.customer.CheckIn.CheckInActivity")
+//         ;
 
-        $dataBuilder = new PayloadDataBuilder();
-        $dataBuilder->addData([
-            'title' => $title,
-            'message' => $message,
-            "type" => 5,
-            "user_type_id" => 3,
-            "sound" => "default",
-            "notification_count" => $count,
-        ]);
+//         $dataBuilder = new PayloadDataBuilder();
+//         $dataBuilder->addData([
+//             'title' => $title,
+//             'message' => $message,
+//             "type" => 5,
+//             "user_type_id" => 3,
+//             "sound" => "default",
+//             "notification_count" => $count,
+//         ]);
 
-        $option = $optionBuilder->build();
-        $notification = $notificationBuilder->build();
-        $data = $dataBuilder->build();
+//         $option = $optionBuilder->build();
+//         $notification = $notificationBuilder->build();
+//         $data = $dataBuilder->build();
 
-//        $token = "dzwSVRui5ZE:APA91bEh4IJsSwrVOGyeYi4wCCEqzwcZJdPl2DlnhN86Mce9g7cGoYZp7wp_-ipdrwhXGCohRtebFI2Ufnprf4hz7z1WhvZiII48EKUE_JnvfZjvu20Eh9RD6u4QjW8OB3mHfPuC6_uE";
+// //        $token = "dzwSVRui5ZE:APA91bEh4IJsSwrVOGyeYi4wCCEqzwcZJdPl2DlnhN86Mce9g7cGoYZp7wp_-ipdrwhXGCohRtebFI2Ufnprf4hz7z1WhvZiII48EKUE_JnvfZjvu20Eh9RD6u4QjW8OB3mHfPuC6_uE";
 
-        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-        return $downstreamResponse;
-    }
+//         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+//         return $downstreamResponse;
+//     }
 
     public function sendRegistration($mobileNumber, $userName) {
         $url = 'http://sms.hybrid91.com/submitsms.jsp';
@@ -247,52 +247,52 @@ class Controller extends BaseController {
         return true;
     }
 
-    public function checkUserbookingExist($checkIn, $checkOut, $user_id, $resortId) {
-        $check_in = Carbon::parse($checkIn)->format('Y-m-d H:i:s');
-        $check_out = Carbon::parse($checkOut)->format('Y-m-d H:i:s');
-//        $check_in = date("Y-m-d H:s:i", strtotime($checkIn));
-//        $check_out = date("Y-m-d H:s:i", strtotime($checkOut));
-        $existingRecord = UserBookingDetail::where("user_id", $user_id)
-                        ->where("is_cancelled", 0)
-                        ->where(function($query) use($check_in, $check_out) {
-                            $query->orWhere(function($query) use($check_in) {
-                                $query->where("check_in", "<=", $check_in)
-                                ->where("check_out", ">=", $check_in);
-                            });
-                            $query->orWhere(function($query) use($check_out) {
-                                $query->where("check_in", "<", $check_out)
-                                ->where("check_out", ">=", $check_out);
-                            });
-                            $query->orWhere(function($query) use($check_in, $check_out) {
-                                $query->where("check_in", ">=", $check_in)
-                                ->where("check_out", "<=", $check_out);
-                            });
-                        })->get();
+//     public function checkUserbookingExist($checkIn, $checkOut, $user_id, $resortId) {
+//         $check_in = Carbon::parse($checkIn)->format('Y-m-d H:i:s');
+//         $check_out = Carbon::parse($checkOut)->format('Y-m-d H:i:s');
+// //        $check_in = date("Y-m-d H:s:i", strtotime($checkIn));
+// //        $check_out = date("Y-m-d H:s:i", strtotime($checkOut));
+//         $existingRecord = UserBookingDetail::where("user_id", $user_id)
+//                         ->where("is_cancelled", 0)
+//                         ->where(function($query) use($check_in, $check_out) {
+//                             $query->orWhere(function($query) use($check_in) {
+//                                 $query->where("check_in", "<=", $check_in)
+//                                 ->where("check_out", ">=", $check_in);
+//                             });
+//                             $query->orWhere(function($query) use($check_out) {
+//                                 $query->where("check_in", "<", $check_out)
+//                                 ->where("check_out", ">=", $check_out);
+//                             });
+//                             $query->orWhere(function($query) use($check_in, $check_out) {
+//                                 $query->where("check_in", ">=", $check_in)
+//                                 ->where("check_out", "<=", $check_out);
+//                             });
+//                         })->get();
 
-        return count($existingRecord) > 0 ? count($existingRecord) : 0;
-    }
+//         return count($existingRecord) > 0 ? count($existingRecord) : 0;
+//     }
 
-    public function isCurrentBooking($checkIn) {
-        $checkInDate = Carbon::parse($checkIn);
-        $nowDateTime = Carbon::now();
-//        dd($checkInDate->lte($nowDateTime));
-//        $userBookingDetails = UserBookingDetail::where(["user_id" => $userId, "is_cancelled" => 0])->get();
-//
-//        foreach ($userBookingDetails as $i => $userBookingDetail) {
-//            $currentDataTime = strtotime(date("d-m-Y H:i:s"));
-//            $checkInTime = strtotime($userBookingDetail->check_in);
-//            $checkOutTime = strtotime($userBookingDetail->check_out);
-//
-//            if ($currentDataTime > $checkOutTime) {
-//                //
-//            } elseif ($currentDataTime < $checkInTime) {
-//                //
-//            } else {
-//                return TRUE;
-//                break;
-//            }
-//        }
-        return $checkInDate->lte($nowDateTime);
-    }
+//     public function isCurrentBooking($checkIn) {
+//         $checkInDate = Carbon::parse($checkIn);
+//         $nowDateTime = Carbon::now();
+// //        dd($checkInDate->lte($nowDateTime));
+// //        $userBookingDetails = UserBookingDetail::where(["user_id" => $userId, "is_cancelled" => 0])->get();
+// //
+// //        foreach ($userBookingDetails as $i => $userBookingDetail) {
+// //            $currentDataTime = strtotime(date("d-m-Y H:i:s"));
+// //            $checkInTime = strtotime($userBookingDetail->check_in);
+// //            $checkOutTime = strtotime($userBookingDetail->check_out);
+// //
+// //            if ($currentDataTime > $checkOutTime) {
+// //                //
+// //            } elseif ($currentDataTime < $checkInTime) {
+// //                //
+// //            } else {
+// //                return TRUE;
+// //                break;
+// //            }
+// //        }
+//         return $checkInDate->lte($nowDateTime);
+//     }
 
 }
