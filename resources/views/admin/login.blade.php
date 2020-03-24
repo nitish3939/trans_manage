@@ -57,8 +57,8 @@
                 <br />
 
                 <div>
-                    <h1><i class="fa fa-anchor"></i> Sanjeevani</h1>
-                    <p>©2018 All Rights Reserved. Sanjeevani.</p>
+                    <h1><i class="fa fa-anchor"></i> Bajrang</h1>
+                    <p>©2018 All Rights Reserved. Bajrang.</p>
                 </div>
             </div>
         </form>

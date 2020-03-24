@@ -13,7 +13,7 @@
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>{{ auth('admin')->user()->user_name ? auth('admin')->user()->user_name : "Admin" }}</h2>
+                <h2>{{ auth('admin')->user()->first_name ? auth('admin')->user()->first_name : "Admin" }}</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->

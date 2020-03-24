@@ -37,8 +37,4 @@ class User extends Authenticatable {
         return $this->email_id;
     }
 
-    public function staff() {
-        return $this->hasOne('App\Models\UserBookingDetail', 'user_id');
-    }
-
 }

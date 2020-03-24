@@ -228,6 +228,16 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
     });
 
     /**
+     * Trip Management
+     */
+    Route::prefix('trip')->group(function() {
+        Route::get('/', 'TripController@index')->name('subadmin.trip.index');
+        Route::get('/trip-list', 'TripController@tripList')->name('subadmin.trip.list');
+        Route::match(['get', 'post'], '/add-trip', 'TripController@addTrip')->name('subadmin.trip.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'TripController@editTrip')->name('subadmin.trip.edit');
+    });
+
+    /**
      * Notification Management
      */
     Route::prefix('notification')->group(function() {

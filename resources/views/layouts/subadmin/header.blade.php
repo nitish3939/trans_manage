@@ -33,7 +33,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ auth('subadmin')->user()->profile_pic_path }}" alt="">{{ auth('subadmin')->user()->user_name }}
+                        <img src="{{ auth('subadmin')->user()->profile_pic_path }}" alt="">{{ auth('subadmin')->user()->first_name }}
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">

@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="/imge/fav.ico">
+        <link rel="shortcut icon" type="image/png" href="/img/fav.ico">
         <title>Rindex::SubAdmin</title>
 
         <!-- Bootstrap -->
@@ -108,19 +108,7 @@
                 }
             });
 
-            // Getting the list cities based on selected state
-            $(document).on('change', "#state", function () {
-                var state_id = $("#state :selected").val();
-                state_id = state_id ? state_id : 0;
-                $.ajax({
-                    url: _baseUrl + '/sub-admin/city-list/' + state_id,
-                    type: 'get',
-                    dataType: 'html',
-                    success: function (res) {
-                        $("#city").html(res);
-                    }
-                });
-            })
+    
 
             function showErrorMessage(msg) {
                 $(".msg").addClass("alert-danger");

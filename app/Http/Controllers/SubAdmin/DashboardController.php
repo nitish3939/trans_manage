@@ -24,7 +24,7 @@ class DashboardController extends Controller {
             'vendors/bootstrap-daterangepicker/daterangepicker.js',
         ];
 
-        return view('admin.dashboard.dashboard', [
+        return view('subadmin.dashboard.dashboard', [
             "activeUser" => $vehicle,
             "activeStaff" => $driver,
             "inactiveUser" => $staff,

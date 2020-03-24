@@ -1,4 +1,4 @@
-@extends('layouts.admin.login')
+@extends('layouts.subadmin.login')
 
 @section('content')
 
@@ -6,7 +6,7 @@
     <section class="login_content">
         <form action="{{ route('subadmin.login') }}" method="post" id="login-form">
             {{ csrf_field() }}
-            <h1>Admin Login</h1>
+            <h1>Subadmin Login</h1>
             @include('errors.errors-and-messages')
             <div class="form-group">
                 <input type="text" class="form-control"  name="email_id" placeholder="Email*"  />
@@ -27,7 +27,7 @@
 
                 <div>
                     <img style="width: 150px;" src="{{asset("img/logo.png") }}" >
-                    <p>©2018 All Rights Reserved. Rindex.</p>
+                    <p>©2018 All Rights Reserved. Bajrang.</p>
                 </div>
             </div>
         </form>
