@@ -238,6 +238,16 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
     });
 
     /**
+     * Challan Management
+     */
+    Route::prefix('challan')->group(function() {
+        Route::get('/', 'ChallanController@index')->name('subadmin.challan.index');
+        Route::get('/challan-list', 'ChallanController@challanList')->name('subadmin.challan.list');
+        // Route::match(['get', 'post'], '/add-challan', 'ChallanController@addVehicle')->name('subadmin.challan.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'ChallanController@editChallan')->name('subadmin.challan.edit');
+    });
+
+    /**
      * Notification Management
      */
     Route::prefix('notification')->group(function() {
