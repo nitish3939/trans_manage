@@ -87,7 +87,7 @@ class VehicleController extends Controller {
                         $bill_image = $request->file("bill_image");
                         $bill = Storage::disk('public')->put('bill_image', $bill_image);
                         $bill_file_name = basename($bill);
-                        $user->bill_image = $bill_file_name;
+                        $vehicle->bill_image = $bill_file_name;
                     }
 
                 $vehicle->damage_part_name_1 = $request->damage_part_name_1;

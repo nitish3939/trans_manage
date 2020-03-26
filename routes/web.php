@@ -103,6 +103,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::get('/', 'TripController@index')->name('admin.trip.index');
         Route::get('/trip-list', 'TripController@tripList')->name('admin.trip.list');
         Route::match(['get', 'post'], '/add-trip', 'TripController@addTrip')->name('admin.trip.add');
+        Route::match(['get', 'post'], '/fuel/{id}', 'TripController@fuelTrip')->name('admin.trip.fuel');
         Route::match(['get', 'post'], '/edit/{id}', 'TripController@editTrip')->name('admin.trip.edit');
     });
 
@@ -234,6 +235,7 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
         Route::get('/', 'TripController@index')->name('subadmin.trip.index');
         Route::get('/trip-list', 'TripController@tripList')->name('subadmin.trip.list');
         Route::match(['get', 'post'], '/add-trip', 'TripController@addTrip')->name('subadmin.trip.add');
+        // Route::match(['get', 'post'], '/fuel/{id}', 'TripController@fuelTrip')->name('subadmin.trip.fuel');
         Route::match(['get', 'post'], '/edit/{id}', 'TripController@editTrip')->name('subadmin.trip.edit');
     });
 

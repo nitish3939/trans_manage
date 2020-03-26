@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Trip;
 use App\Models\Vehicle;
 use App\Models\User;
+use App\Models\Fuel;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
@@ -65,13 +66,53 @@ class TripController extends Controller {
                 $usersArray[$i]['end_trip'] = $user->end_trip;
                 $usersArray[$i]['trip_date'] = $user->trip_date;
                 $usersArray[$i]['expense_amount'] = $user->expense_amount;
-                $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
+                $ob = Fuel::where('trip_id',$user->id)->first();
+                if($ob){
+                    $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('subadmin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';
+                }else{
+                    $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
+                }
                 $i++;
             }
             $data['data'] = $usersArray;
             return $data;
         } catch (\Exception $e) {
             dd($e);
+        }
+    }
+
+    public function fuelTrip(Request $request, $id) {
+        try {
+            $fuel = Fuel::where('trip_id',$id)->with(['vehicle','user'])->first();
+            if ($request->isMethod("post")) {
+                    $fuel->user_id = $request->user_id;
+                    $fuel->vehicle_id = $request->vehicle_id;
+                    $fuel->location = $request->location;
+                    $fuel->payment = $request->payment;
+                if ($fuel->save()) {
+                    return redirect()->route('subadmin.trip.index')->with('status', 'Fuel has been updated successfully.');
+                } else {
+                    return redirect()->route('subadmin.trip.index', $id)->with('error', 'Something went be wrong.');
+                }
+            }
+            $css = [
+                "vendors/iCheck/skins/flat/green.css",
+            ];
+            $js = [
+                'vendors/iCheck/icheck.min.js',
+            ];
+            $vehicle = Vehicle::all();
+            $driver = User::where('user_type_id', 2)->get();
+            return view('subadmin.trip.fuel', [
+                'css' => $css,
+                'js' => $js,
+                'fuel' => $fuel,
+                'vehicle' => $vehicle,
+                'driver' => $driver,
+                    ]
+            );
+        } catch (\Exception $ex) {
+            return redirect()->route('subadmin.trip.index')->with('error', $ex->getMessage());
         }
     }
 
