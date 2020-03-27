@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 // use Carbon\Carbon;
 use App\Models\Vehicle;
 use App\Models\VehicleIssue;
+use App\Models\Trip;
 use App\Models\User;
 use App\Models\VehicleIssuePart;
 use Illuminate\Support\Facades\Storage;
@@ -63,6 +64,15 @@ class VehicleController extends Controller {
                 $usersArray[$i]['vehicle_owner_name'] = $user->vehicle_owner_name;
                 $usersArray[$i]['rc_no'] = $user->rc_no;
                 $usersArray[$i]['vehicle_no'] = $user->vehicle_no;
+                $lim = 30;
+                $average = 0;
+                $trips =Trip::where('vehicle_id',$user->id)->take($lim)->get();
+                foreach ($trips as $trip) {
+                    $diff_fuel = $trip->fuel_entry - $trip->end_fuel_entry; 
+                    $diff_distance = $trip->end_km - $trip->start_km;
+                    $average = $diff_fuel * $diff_distance / 30;
+                }
+                $usersArray[$i]['vehicle_milage'] = number_format($average, 2, '.', ',');
                 $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.vehicle.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('admin.vehicle.issue', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Issue</a>';
                 $i++;
             }
