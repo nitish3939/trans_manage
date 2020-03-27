@@ -21,6 +21,7 @@
                             <th>Vehicle Owner Name</th>
                             <th>Vehicle No.</th>
                             <th>Rc No.</th>
+                            <th>Vehicle Avg Milage</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -56,6 +57,7 @@
                 {"data": "vehicle_owner_name", sortable: false},
                 {"data": "vehicle_no", sortable: false},
                 {"data": "rc_no", sortable: false},
+                {"data": "vehicle_milage", sortable: false},
                 {"data": "view-deatil", sortable: false},
             ]
         });
