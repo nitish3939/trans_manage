@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" value="{{ $user->first_name }}" class="form-control" placeholder="First Name" name="f_name" id="name">
+                            <input type="text" value="{{ $user->first_name }}" class="form-control" placeholder="First Name" name="f_name" id="name" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Email*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ $user->email_id }}" type="text" class="form-control" placeholder="Email" name="email" id="email">
+                            <input value="{{ $user->email_id }}" type="text" class="form-control" placeholder="Email" name="email" id="email" required> 
                         </div>
                     </div>
 

@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fuel Entry*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fuel Entry(L*</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="number" class="form-control" value="{{ $trip->fuel_entry }}" placeholder="Fuel Entry" name="fuel_entry" id="fuel_entry" required>
                     </div>
@@ -68,13 +68,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Start KM*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Distance(KM)*</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="number" class="form-control" value="{{ $trip->start_km }}" placeholder="Start KM" name="start_km" id="start_km" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End KM</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Distance(KM)</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="number" class="form-control" value="{{ $trip->end_km }}" placeholder="End KM" name="end_km" id="end_km" >
                     </div>
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Fuel Entry</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Fuel Entry(L)</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="number" class="form-control" value="{{ $trip->end_fuel_entry }}" placeholder="End Fuel Entry" name="end_fuel_entry" id="end_fuel_entry" >
                     </div>

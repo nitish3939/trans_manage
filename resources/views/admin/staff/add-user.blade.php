@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name*</label>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <input type="text" class="form-control" placeholder="First Name" name="f_name" id="name">
+                                <input type="text" class="form-control" placeholder="First Name" name="f_name" id="name" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -30,11 +30,11 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Mobile No.*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input  type="number" class="form-control" placeholder="Mobile No." name="staff_mobile_no" id="staff_mobile_no">
+                            <input  type="number" class="form-control" placeholder="Mobile No." name="staff_mobile_no" id="staff_mobile_no" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email*</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <input  type="text" class="form-control" placeholder="Email" name="staff_email" id="staff_email">
                         </div>
@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Dob*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="date" class="form-control" name="staff_dob" id="staff_dob">
+                            <input type="date" class="form-control" name="staff_dob" id="staff_dob" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,51 +54,51 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Address*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input  type="text" class="form-control" placeholder="Address" name="staff_address" id="staff_address">
+                            <input  type="text" class="form-control" placeholder="Address" name="staff_address" id="staff_address" required>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Account Holder Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input  type="text" class="form-control" placeholder="Account_holder_name" name="account_holder_name" id="account_holder_name">
+                            <input  type="text" class="form-control" placeholder="Account_holder_name" name="account_holder_name" id="account_holder_name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Bank Account No.*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input  type="number" class="form-control" placeholder="Account No" name="acc_no" id="acc_no">
+                            <input  type="number" class="form-control" placeholder="Account No" name="acc_no" id="acc_no" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Bank Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input  type="text" class="form-control" placeholder="Bank Name" name="bank_name" id="bank_name">
+                            <input  type="text" class="form-control" placeholder="Bank Name" name="bank_name" id="bank_name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">IFSC Code*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input  type="text" class="form-control" placeholder="IFSC" name="ifsc" id="ifsc">
+                            <input  type="text" class="form-control" placeholder="IFSC" name="ifsc" id="ifsc" required>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Kyc Front Image</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control" type="file" name="kyc_pic_front" id="kyc_pic_front" >
+                            <input class="form-control" type="file" name="kyc_pic_front" id="kyc_pic_front" required >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Kyc Back Image</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control" type="file" name="kyc_pic_back" id="kyc_pic_back" >
+                            <input class="form-control" type="file" name="kyc_pic_back" id="kyc_pic_back" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">DL Image</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control" type="file" name="dl_pic" id="dl_pic" >
+                            <input class="form-control" type="file" name="dl_pic" id="dl_pic" required>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
@@ -121,7 +121,6 @@
 @section('script')
 <script>
     $(document).ready(function () {
-
         $("#addStaffForm").validate({
             rules: {
                 staff_name: {

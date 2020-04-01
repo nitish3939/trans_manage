@@ -194,3 +194,21 @@
 
 @endsection
 
+@section('script')
+<script>
+    $(document).ready(function () {
+
+        $(document).on('keydown', "#vehicle_owner_name", function (e) {
+        var charCode = (e.which) ? e.which : e.keyCode;
+        if (((charCode == 8) || (charCode == 32) || (charCode == 46) || (charCode == 9) || (charCode >= 35 && charCode <= 40) || (charCode >= 65 && charCode <= 90))) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    });
+</script>
+
+@endsection
+

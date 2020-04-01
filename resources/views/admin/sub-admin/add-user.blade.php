@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="First Name" name="f_name" id="name">
+                            <input type="text" class="form-control" placeholder="First Name" name="f_name" id="name" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -29,19 +29,19 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Email*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ old('email') }}" type="text" class="form-control" placeholder="Email" name="email" id="email">
+                            <input value="{{ old('email') }}" type="text" class="form-control" placeholder="Email" name="email" id="email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Password*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ old('password') }}" type="password" class="form-control" placeholder="Password" name="password" id="password">
+                            <input value="{{ old('password') }}" type="password" class="form-control" placeholder="Password" name="password" id="password" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ old('confirm_password') }}" type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password">
+                            <input value="{{ old('confirm_password') }}" type="password" class="form-control" placeholder="Confirm Password" required name="confirm_password" id="confirm_password">
                         </div>
                     </div>
                     <div class="form-group">

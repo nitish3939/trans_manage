@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" value="{{ $user->first_name }}" class="form-control" placeholder="First Name" name="f_name" id="name">
+                            <input type="text" value="{{ $user->first_name }}" class="form-control" placeholder="First Name" name="f_name" id="name" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -28,13 +28,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Mobile No.*</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Mobile No.</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <input readonly="true" value="{{ $user->mobile_number }}" type="text" class="form-control" placeholder="Mobile No." name="staff_mobile_no" id="staff_mobile_no">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email*</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <input value="{{ $user->email_id }}" type="text" class="form-control" placeholder="Email" name="staff_email" id="staff_email">
                         </div>
@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Dob*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="date" value="{{ $user->date_of_birth }}" class="form-control" name="staff_dob" id="staff_dob">
+                            <input type="date" value="{{ $user->date_of_birth }}" class="form-control" name="staff_dob" id="staff_dob" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -60,32 +60,32 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Address*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ $user->address }}" type="text" class="form-control" placeholder="Address" name="staff_address" id="staff_address">
+                            <input value="{{ $user->address }}" type="text" class="form-control" placeholder="Address" required name="staff_address" id="staff_address">
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Account Holder Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ $user->account_holder_name }}" type="text" class="form-control" placeholder="Account_holder_name" name="account_holder_name" id="account_holder_name">
+                            <input value="{{ $user->account_holder_name }}" type="text" class="form-control" placeholder="Account_holder_name" name="account_holder_name" id="account_holder_name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Bank Account No.*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ $user->bank_account_no }}" type="number" class="form-control" placeholder="Account No" name="acc_no" id="acc_no">
+                            <input value="{{ $user->bank_account_no }}" type="number" class="form-control" placeholder="Account No" name="acc_no" id="acc_no" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Bank Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ $user->bank_name }}" type="text" class="form-control" placeholder="Bank Name" name="bank_name" id="bank_name">
+                            <input value="{{ $user->bank_name }}" type="text" class="form-control" placeholder="Bank Name" name="bank_name" id="bank_name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">IFSC Code*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input value="{{ $user->ifsc }}" type="text" class="form-control" placeholder="IFSC" name="ifsc" id="ifsc">
+                            <input value="{{ $user->ifsc }}" type="text" class="form-control" placeholder="IFSC" name="ifsc" id="ifsc" required>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
