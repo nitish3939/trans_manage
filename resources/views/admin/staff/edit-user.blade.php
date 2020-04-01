@@ -98,7 +98,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Kyc preview</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <img class="img-rounded" style="width: 100px; height: 100px;" src="@if($user->aadhar_id_front) http://transport.dbaquincy.com/storage/aadhar/{{$user->aadhar_id_front}}elseif {{'http://transport.dbaquincy.com/img/no-image.jpg'}}@endif" >
+                            <img class="img-rounded" style="width: 100px; height: 100px;" src="@if($user->aadhar_id_front) {{'http://transport.dbaquincy.com/storage/aadhar/'}}{{$user->aadhar_id_front}}elseif {{'http://transport.dbaquincy.com/img/no-image.jpg'}}@endif" >
                         </div>
                     </div>
                     <div class="form-group">
