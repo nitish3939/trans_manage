@@ -66,7 +66,7 @@ class VehicleController extends Controller {
                 $usersArray[$i]['vehicle_no'] = $user->vehicle_no;
                 $lim = 30;
                 $average = 0;
-                $trips =Trip::where('vehicle_id',$user->id)->take($lim)->get();
+                $trips =Trip::where('vehicle_id',$user->id)->whereNotNull('end_km')->whereNotNull('end_fuel_entry')->take($lim)->latest()->get();
                 foreach ($trips as $trip) {
                     $diff_fuel = $trip->fuel_entry - $trip->end_fuel_entry; 
                     $diff_distance = $trip->end_km - $trip->start_km;

@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration {
             $table->bigInteger('bank_account_no')->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('bank_name')->nullable();
-            $table->bigInteger('ifsc')->nullable();
+            $table->string('ifsc')->nullable();
             $table->string('address')->nullable();
             $table->string('password')->nullable();
             $table->string('aadhar_id_front')->nullable();
