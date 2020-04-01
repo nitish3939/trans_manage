@@ -33,6 +33,21 @@ class User extends Authenticatable {
         return $name ? asset('storage/profile_pic/' . $name) : asset("/img/no-image.jpg");
     }
 
+    public function getAadharIdBackAttribute($name) {
+
+        return $name ? asset('storage/aadhar/' . $name) : asset("/img/no-image.jpg");
+    }
+
+    public function getAadharIdFrontAttribute($name) {
+
+        return $name ? asset('storage/aadhar/' . $name) : asset("/img/no-image.jpg");
+    }
+
+    public function getVoterIdAttribute($name) {
+
+        return $name ? asset('storage/dl/' . $name) : asset("/img/no-image.jpg");
+    }
+
     public function getEmailForPasswordReset() {
         return $this->email_id;
     }
