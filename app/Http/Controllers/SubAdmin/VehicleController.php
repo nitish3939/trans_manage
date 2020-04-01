@@ -66,11 +66,13 @@ class VehicleController extends Controller {
                 $usersArray[$i]['vehicle_no'] = $user->vehicle_no;
                 $lim = 30;
                 $average = 0;
-                $trips =Trip::where('vehicle_id',$user->id)->take($lim)->get();
+                $trips =Trip::where('vehicle_id',$user->id)->whereNotNull('end_km')->whereNotNull('end_fuel_entry')->take($lim)->latest()->get();
+                $count = Trip::where('vehicle_id',$user->id)->whereNotNull('end_km')->whereNotNull('end_fuel_entry')->take($lim)->latest()->count();
                 foreach ($trips as $trip) {
                     $diff_fuel = $trip->fuel_entry - $trip->end_fuel_entry; 
                     $diff_distance = $trip->end_km - $trip->start_km;
-                    $average = $diff_fuel * $diff_distance / 30;
+                    $average1 =  $diff_distance / $diff_fuel ;
+                    $average = $average1 / $count ;
                 }
                 $usersArray[$i]['vehicle_milage'] = number_format($average, 2, '.', ',');
                 $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.vehicle.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('subadmin.vehicle.issue', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Issue</a>';
