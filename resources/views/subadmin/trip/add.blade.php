@@ -92,6 +92,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Description</label>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <input type="text" class="form-control" placeholder="Expense Description" name="expense_description" id="expense_description" >
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">End Fuel Entry(L)</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <input type="number" class="form-control" placeholder="End Fuel Entry" name="end_fuel_entry" id="end_fuel_entry" >
