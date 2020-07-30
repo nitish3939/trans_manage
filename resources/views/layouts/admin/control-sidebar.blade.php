@@ -53,6 +53,12 @@
 >
 <a href="{{ route('admin.trip.index') }}"><i class="fa fa-location-arrow"></i>Trip Management</a>
 </li>
+<li  @if(in_array(Route::currentRouteName(), ['admin.bilty.index']))
+{{ "class=current-page" }}
+@endif
+>
+<a href="{{ route('admin.bilty.index') }}"><i class="fa fa-files-o"></i>Billty Management</a>
+</li>
 <li  @if(in_array(Route::currentRouteName(), ['admin.notification.index']))
 {{ "class=current-page" }}
 @endif

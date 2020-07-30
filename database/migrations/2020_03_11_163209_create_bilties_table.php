@@ -26,6 +26,17 @@ class CreateBiltiesTable extends Migration
             $table->bigInteger('invoice_no')->nullable();
             $table->bigInteger('eway_bill_no')->nullable();
             $table->bigInteger('value')->nullable();
+            $table->string('charged')->nullable();
+            $table->string('delivery_at')->nullable();
+            $table->bigInteger('gr_no')->nullable();
+            $table->string('freight')->nullable();
+            $table->string('waiting')->nullable();
+            $table->string('labour')->nullable();
+            $table->bigInteger('toll')->nullable();
+            $table->bigInteger('cgst')->nullable();
+            $table->bigInteger('sgst')->nullable();
+            $table->bigInteger('igst')->nullable();
+            $table->bigInteger('g_total')->nullable();
             $table->timestamps();
         });
     }

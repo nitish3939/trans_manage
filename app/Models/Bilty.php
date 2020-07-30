@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bilty extends Model
 {
-    //
+    public function vehicle() {
+        return $this->belongsTo('App\Models\Vehicle', 'vehicle_id');
+    }
+    public function trip() {
+        return $this->belongsTo('App\Models\Trip', 'trip_id');
+    }
 }

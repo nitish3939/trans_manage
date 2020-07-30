@@ -24,6 +24,7 @@ class CreateTripsTable extends Migration
             $table->string('start_km')->nullable();
             $table->string('end_km')->nullable();
             $table->bigInteger('expense_amount')->nullable();
+            $table->string('expense_description')->nullable();
             $table->bigInteger('amount_spend')->nullable();
             $table->string('end_fuel_entry')->nullable();
             $table->bigInteger('is_read')->default(0);;

@@ -15,7 +15,6 @@ class UserTypeTableSeeder extends Seeder {
         foreach ($userTypeArray as $userType) {
             DB::table('user_type')->insert([
                 'user_type_value' => $userType,
-                'is_active' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
         }
