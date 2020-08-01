@@ -219,7 +219,7 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        $('#yes_software').hide();
+       
         $(function () {
 
 $("#softwareselector").change(function () {
