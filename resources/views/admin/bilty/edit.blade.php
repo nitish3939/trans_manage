@@ -143,7 +143,7 @@
                     <div class="form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12" for="w3-last-name">Is it Build Or Paid*</label>
 														<div class="col-md-6 col-sm-6 col-xs-6">
-															<select name="is_software" class="form-control" id="softwareselector">
+															<select name="is_software" class="form-control" id="softwareselector" required>
                                                             <option value="" >Select Option</option>
 															<option value="build" @if($bilty->payment == "build"){{'selected'}}@endif>To Be Build</option>
 															<option value="paid" @if($bilty->payment == "paid"){{'selected'}}@endif>To Be Paid</option>
