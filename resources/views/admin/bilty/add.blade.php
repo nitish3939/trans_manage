@@ -97,7 +97,13 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Charged*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Charged" name="charged" id="charged">
+                     
+                            <select name="charged" class="form-control" required >
+                                    <option value="" >Select Charged Option</option>
+									<option value="diesel">Diesel</option>
+									<option value="cng">CNG</option>
+                                    <option value="other">Other</option>
+							</select>
                         </div>
                     </div>
                     <div class="form-group">

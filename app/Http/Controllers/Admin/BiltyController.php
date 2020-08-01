@@ -94,6 +94,7 @@ class BiltyController extends Controller {
                     $bilty->value = $request->value;
                     $bilty->charged = $request->charged;
                     $bilty->delivery_at = $request->delivery_at;
+                    $bilty->payment = $request->is_software;
                     $bilty->gr_no = $request->gr_no;
                     $bilty->freight = $request->freight;
                     $bilty->waiting = $request->waiting;
@@ -168,6 +169,7 @@ class BiltyController extends Controller {
             $data->value = $request->value;
             $data->charged = $request->charged;
             $data->delivery_at = $request->delivery_at;
+            $bilty->payment = $request->is_software;
             $data->gr_no = $request->gr_no;
             $data->freight = $request->freight;
             $data->waiting = $request->waiting;
@@ -224,25 +226,11 @@ class BiltyController extends Controller {
         $bookingDetail = Bilty::find($id);
 //        dd($bookingDetail->toArray());
         if ($bookingDetail) {
-            // $user = User::find($bookingDetail->user_id);
-            // $user->load(['payments', 'mealOrders' => function($query) use($user, $bookingDetail) {
-            //         $query->where(["user_id" => $user->id, "resort_id" => $bookingDetail->resort_id, "booking_id" => $bookingDetail->id])->accepted();
-            //     }]);
+            $data = Bilty::where('id',$id)->with(['trip','bilty_items'])->first();
 
-            // $total = $user->mealOrders->sum('total_amount');
-            // if ($bookingDetail->booking_amount_type == 2) {
-            //     $total += $bookingDetail->booking_amount;
-            // }
-            // $paid = $user->payments->where("resort_id", $bookingDetail->resort_id)->where("booking_id", $bookingDetail->id)->sum('amount');
-            // $discountPrice = $total;
-            // if ($user->discount > 0) {
-            //     $discountPrice = number_format(($total - ($total * ($user->discount / 100))), 0, ".", "");
-            // }
-            // $discountAmt = number_format(($total * ($user->discount / 100)), 0, ".", "");
-            // $outstanding = $discountPrice - $paid;
 
             $html = view('admin.bilty.invoice-pdf', [
-                'bookingDetail' => $bookingDetail,
+                'data' => $data,
               
             ]);
 //            return $html;

@@ -161,97 +161,92 @@
             <div id="logo">
                 <h2>BAJRANG LOGISTICS</h2>
                 <p>
-                    Addresss <br>
-                    Phone No. :- 54657687978979
+                    A-05, SECTOR-69, NOIDA,UTTAR PRADESH,201301<br>
+                    Phone No. 0120-4326356 / +91 8268236513 / +91 9999423911 / +91 9354616779
                 </p>
             </div>
             <h1>BILLTY</h1>
             <div id="company" class="clearfix">
-                <div><span>GR No.</span> 32535</div>
-                <div><span>Date</span> 54-56-5645</div>
-                <div><span>From</span> patna</div>
-                <div><span>To</span> Delhi</div>
+                <div><span>GR No.</span> {{ $data->gr_no }}</div>
+                <div><span>Date</span> {{ $data->trip->trip_date }}</div>
+                <div><span>From</span> {{ $data->trip->start_trip }}</div>
+                <div><span>To</span> {{ $data->trip->end_trip }}</div>
             </div>
             <div id="project">
-                <div><span>Conginor's Name</span> bhtrgtfg </div>
-                <div><span>Address</span> gdfgdfgdf d gdfg dgdg dg</div>
+                <div><span>Conginor's Name</span> {{ $data->consignor_name }} </div>
+                <div><span>Address</span> {{ $data->consignor_address }}</div>
                 <!--<div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>-->
-                <div><span>GST No.</span> 53465475685 </div>
+                <div><span>GST No.</span> {{ $data->consignor_gst }} </div>
 <!--                <div><span>DATE</span> August 17, 2015</div>
                 <div><span>DUE DATE</span> September 17, 2015</div>-->
-                <div><span>Conginor's Name</span> bhtrgtfg </div>
-                <div><span>Address</span> gdfgdfgdf d gdfg dgdg dg</div>
+                <div><span>Consignee's Name</span> {{ $data->consignee_name }} </div>
+                <div><span>Address</span> {{ $data->consignee_address }}</div>
                 <!--<div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>-->
-                <div><span>GST No.</span> 53465475685 </div>
+                <div><span>GST No.</span> {{ $data->consignee_gst }} </div>
             </div>
         </header>
         <main>
             <table>
                 <thead>
                     <tr>
-                        <th >No Of Package</th>
-<!--                        <th class="desc">DESCRIPTION</th>-->
+                        <th>No Of Package</th>
                         <th>Description</th>
                         <th>Weight</th>
-                        <th>TOTAL</th>
                     </tr>
                 </thead>
-                <tbody>
-              
+                <tbody>              
+                @if($data->bilty_items)
+                    @foreach($data->bilty_items as $bilty_item)
                     <tr>
-                        <td>54654</td>
+                        <td>{{$bilty_item->no_package}}</td>
                         <!--<td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>-->
-                        <td>hgdogergre</td>
-                        <td class="qty">45654</td>
-                        <td>fre43t</td>
+                        <td>{{$bilty_item->description}}</td>
+                        <td>{{$bilty_item->weight}}</td>
                     </tr>
+                    @endforeach
+                    @endif
                  
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                 
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>BOOKING AMOUNT<small>(Prepaid)</small></td>
-                        <td class="total">- 545</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>TOTAL</td>
-                        <td class="total">5346</td>
-                    </tr>
-
-                   
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>DISCOUNT 5%</td>
-                        <td class="total">- 546</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>PAID</td>
-                        <td class="total">- 35</td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td class="grand total">Outstanding</td>
-                        <td class="grand total">534</td>
-                    </tr>
+                
                 </tbody>
             </table>
-            <!--            <div id="notices">
+
+            <h1>Invoice no: ({{$data->invoice_no}})</h1>
+            @if($data->payment == "build")  
+            <div id="project">
+                <div><span>E-Way Bill No</span> {{ $data->eway_bill_no }} </div>
+                <div><span>Delivery At</span> {{ $data->delivery_at }}</div>
+                <div><span>Charged</span> {{ $data->charged }} </div>
+                <div><span>Value</span> {{ $data->value }} </div>
+               
+            </div>
+
+            @else($data->payment == "paid") 
+            <div id="company" class="clearfix">
+                <div><span>Freight</span> {{ $data->freight }}</div>
+                <div><span>Wating</span> {{ $data->waiting }}</div>
+                <div><span>Labour</span> {{ $data->labour }}</div>
+                <div><span>G.R.</span> {{ $data->gr_no }}</div>
+                <div><span>Toll</span> {{ $data->toll }}</div>
+                <div><span>CGST</span> {{ $data->cgst }}</div>
+                <div><span>SGST</span> {{ $data->sgst }}</div>
+                <div><span>IGST</span> {{ $data->igst }}</div>
+                <div><span>G.Total</span> {{ $data->g_total }}</div>
+             
+            </div>
+
+            <div id="project">
+                <div><span>E-Way Bill No</span> {{ $data->eway_bill_no }} </div>
+                <div><span>Delivery At</span> {{ $data->delivery_at }}</div>
+                <div><span>Charged</span> {{ $data->charged }} </div>
+                <div><span>Value</span> {{ $data->value }} </div>
+               
+            </div>
+
+            @endif
+                       <!-- <div id="notices">
                             <div>NOTICE:</div>
                             <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-                        </div>-->
+                        </div> -->
         </main>
         <footer>
             Invoice was created on a computer and is valid without the signature and seal.

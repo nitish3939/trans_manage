@@ -12,4 +12,7 @@ class Bilty extends Model
     public function trip() {
         return $this->belongsTo('App\Models\Trip', 'trip_id');
     }
+    public function bilty_items() {
+        return $this->hasMany('App\Models\BiltyItem', 'bilty_id');
+    }
 }

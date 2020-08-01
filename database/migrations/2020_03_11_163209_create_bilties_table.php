@@ -28,6 +28,7 @@ class CreateBiltiesTable extends Migration
             $table->bigInteger('value')->nullable();
             $table->string('charged')->nullable();
             $table->string('delivery_at')->nullable();
+            $table->string('payment')->nullable();
             $table->bigInteger('gr_no')->nullable();
             $table->string('freight')->nullable();
             $table->string('waiting')->nullable();
