@@ -114,7 +114,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::get('/', 'BiltyController@index')->name('admin.bilty.index');
         Route::get('/bilty-list', 'BiltyController@biltyList')->name('admin.bilty.list');
         Route::match(['get', 'post'], '/add-bilty', 'BiltyController@addBilty')->name('admin.bilty.add');
-        Route::match(['get', 'post'], '/billty/{id}', 'BiltyController@generateBuiltyInvoice')->name('admin.bilty.invoice');
+        Route::match(['get', 'post'], '/billty/{id}', 'BiltyController@generateBiltyInvoice')->name('admin.bilty.invoice');
         Route::match(['get', 'post'], '/edit/{id}', 'BiltyController@editBilty')->name('admin.bilty.edit');
     });
 

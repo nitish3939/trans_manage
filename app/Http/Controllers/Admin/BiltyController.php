@@ -144,69 +144,106 @@ class BiltyController extends Controller {
         }
     }
 
-    public function editChallan(Request $request, $id) {
-        try {
-            $challan = Challan::where('id',$id)->with(['vehicle','user'])->first();
-            if ($request->isMethod("post")) {
-                $challan->challan_no = $request->challan_no;
-                $challan->challan_place = $request->challan_place;
-                $challan->challan_amount = $request->challan_amount;
-                $challan->description = $request->description;
-                $challan->vehicle_id = $request->vehicle_id;
-                if ($challan->save()) {
-                    return redirect()->route('admin.challan.index')->with('status', 'Challan has been updated successfully.');
-                } else {
-                    return redirect()->route('admin.challan.index', $id)->with('error', 'Something went be wrong.');
-                }
+    public function editBilty(Request $request, $id) {
+        $data = Bilty::find($id);
+        if ($request->isMethod("post")) {
+            $validator = Validator::make($request->all(), [
+                        'consignor_name' => 'bail|required',
+                        'consignor_address' => 'bail|required',
+                        'consignee_gst' => 'bail|required',
+                        'consignor_gst' => 'bail|required',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->route('admin.bilty.edit', $data->id)->withErrors($validator)->withInput();
             }
-            $css = [
-                "vendors/iCheck/skins/flat/green.css",
-            ];
-            $js = [
-                'vendors/iCheck/icheck.min.js',
-            ];
-            $vehicle = Vehicle::all();
-            return view('admin.challan.edit', [
-                'css' => $css,
-                'js' => $js,
-                'challan' => $challan,
-                'vehicle' => $vehicle,
-                    ]
-            );
-        } catch (\Exception $ex) {
-            return redirect()->route('admin.challan.index')->with('error', $ex->getMessage());
+            $data->trip_id = $request->trip_id;
+            $data->consignor_name = $request->consignor_name;
+            $data->consignor_address = $request->consignor_address;
+            $data->consignor_gst = $request->consignor_gst;
+            $data->consignee_name = $request->consignee_name;
+            $data->consignee_address = $request->consignee_address;
+            $data->consignee_gst = $request->consignee_gst;
+            $data->invoice_no = $request->invoice_no;
+            $data->eway_bill_no = $request->eway_bill_no;
+            $data->value = $request->value;
+            $data->charged = $request->charged;
+            $data->delivery_at = $request->delivery_at;
+            $data->gr_no = $request->gr_no;
+            $data->freight = $request->freight;
+            $data->waiting = $request->waiting;
+            $data->labour = $request->labour;
+            $data->toll = $request->toll;
+            $data->cgst = $request->cgst;
+            $data->sgst = $request->sgst;
+            $data->igst = $request->igst;
+            $data->g_total = $request->g_total;  
+
+            if ($data->save()) {
+                if (!empty($request->packages) && !empty($request->description) && !empty($request->weight)) {
+                    foreach ($request->packages as $key => $packages) {
+                        if (!empty($packages) && !empty($request->packages[$key])) {
+                            if ($request->record_id[$key]) {
+                                $items = BiltyItem::find($request->record_id[$key]);
+                            } else {
+                                $items = new BiltyItem();
+                            }
+                            $items->bilty_id = $data->id;
+                            $items->no_package = $request->packages[$key] ? $request->packages[$key] : ' ';
+                            $items->description = $request->description[$key] ? $request->description[$key] : ' ';
+                            $items->weight =  $request->weight[$key] ? $request->weight[$key] : ' ';
+                            $items->save();
+                        }
+                    }
+                }
+                return redirect()->route('admin.bilty.index', $data->id)->with('status', "Bilty has been updated successfully.");
+            } else {
+                return redirect()->route('admin.bilty.edit', $data->id)->withErrors("Something went be wrong.")->withInput();
+            }
         }
+
+        $css = [
+            'vendors/bootstrap-daterangepicker/daterangepicker.css',
+        ];
+        $js = [
+            'vendors/moment/min/moment.min.js',
+            'vendors/bootstrap-daterangepicker/daterangepicker.js',
+            'vendors/datatables.net/js/jquery.dataTables.min.js',
+        ];
+        $trips = Trip::all();
+        $bilty_items = BiltyItem::Where('bilty_id',$data->id)->get();
+        return view('admin.bilty.edit', [
+            'js' => $js,
+            'css' => $css,
+            'trips' => $trips,
+            'bilty_items' => $bilty_items,
+            'bilty' => $data,
+        ]);
     }
 
-    public function generateBuiltyInvoice(Request $request, $booking_id) {
-        $bookingDetail = UserBookingDetail::find($booking_id);
+    public function generateBiltyInvoice(Request $request, $id) {
+        $bookingDetail = Bilty::find($id);
 //        dd($bookingDetail->toArray());
         if ($bookingDetail) {
-            $user = User::find($bookingDetail->user_id);
-            $user->load(['payments', 'mealOrders' => function($query) use($user, $bookingDetail) {
-                    $query->where(["user_id" => $user->id, "resort_id" => $bookingDetail->resort_id, "booking_id" => $bookingDetail->id])->accepted();
-                }]);
+            // $user = User::find($bookingDetail->user_id);
+            // $user->load(['payments', 'mealOrders' => function($query) use($user, $bookingDetail) {
+            //         $query->where(["user_id" => $user->id, "resort_id" => $bookingDetail->resort_id, "booking_id" => $bookingDetail->id])->accepted();
+            //     }]);
 
-            $total = $user->mealOrders->sum('total_amount');
-            if ($bookingDetail->booking_amount_type == 2) {
-                $total += $bookingDetail->booking_amount;
-            }
-            $paid = $user->payments->where("resort_id", $bookingDetail->resort_id)->where("booking_id", $bookingDetail->id)->sum('amount');
-            $discountPrice = $total;
-            if ($user->discount > 0) {
-                $discountPrice = number_format(($total - ($total * ($user->discount / 100))), 0, ".", "");
-            }
-            $discountAmt = number_format(($total * ($user->discount / 100)), 0, ".", "");
-            $outstanding = $discountPrice - $paid;
+            // $total = $user->mealOrders->sum('total_amount');
+            // if ($bookingDetail->booking_amount_type == 2) {
+            //     $total += $bookingDetail->booking_amount;
+            // }
+            // $paid = $user->payments->where("resort_id", $bookingDetail->resort_id)->where("booking_id", $bookingDetail->id)->sum('amount');
+            // $discountPrice = $total;
+            // if ($user->discount > 0) {
+            //     $discountPrice = number_format(($total - ($total * ($user->discount / 100))), 0, ".", "");
+            // }
+            // $discountAmt = number_format(($total * ($user->discount / 100)), 0, ".", "");
+            // $outstanding = $discountPrice - $paid;
 
-            $html = view('admin.users.booking-invoice-pdf', [
-                'user' => $user,
+            $html = view('admin.bilty.invoice-pdf', [
                 'bookingDetail' => $bookingDetail,
-                'total' => $total,
-                'paid' => $paid,
-                'discountPrice' => $discountPrice,
-                'outstanding' => $outstanding,
-                'discountAmt' => $discountAmt,
+              
             ]);
 //            return $html;
             $pdf = \App::make('dompdf.wrapper');

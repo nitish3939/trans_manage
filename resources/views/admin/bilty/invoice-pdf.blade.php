@@ -1,5 +1,3 @@
-
-application/x-httpd-php invoice-pdf.blade.php ( HTML document, ASCII text )
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -156,104 +154,97 @@ application/x-httpd-php invoice-pdf.blade.php ( HTML document, ASCII text )
     </head>
     <body>
         <header class="clearfix">
-            Created At :- {{date("d-M-Y")}}
+            Created At :- {{date("d-M-Y")}}<br>
+            GSTIN no :- 536466464646<br>
+            PAN No :- 65465464646<br>
+            Fssai No :- 64654654654<br>
             <div id="logo">
-                <h2>{{$user->userBookingDetail->resort->name}}</h2>
+                <h2>BAJRANG LOGISTICS</h2>
                 <p>
-                    {{$user->userBookingDetail->resort->address_1}}<br>
-                    Phone No. :- {{$user->userBookingDetail->resort->contact_number}}
+                    Addresss <br>
+                    Phone No. :- 54657687978979
                 </p>
             </div>
-            <h1>INVOICE</h1>
+            <h1>BILLTY</h1>
             <div id="company" class="clearfix">
-                <div><span>Room Type</span> {{$user->userBookingDetail->room_type_name}}</div>
-                <div><span>Room No.</span> {{$user->userBookingDetail->resort_room_no}}</div>
-                <div><span>Check In</span>{{date('d-M-Y', strtotime($user->userBookingDetail->check_in))}}</div>
-                <div><span>Check Out</span> {{date('d-M-Y', strtotime($user->userBookingDetail->check_out))}}</div>
+                <div><span>GR No.</span> 32535</div>
+                <div><span>Date</span> 54-56-5645</div>
+                <div><span>From</span> patna</div>
+                <div><span>To</span> Delhi</div>
             </div>
             <div id="project">
-                <div><span>Name</span> {{$user->user_name}} </div>
-                <div><span>Email ID</span> {{$user->email_id}} </div>
+                <div><span>Conginor's Name</span> bhtrgtfg </div>
+                <div><span>Address</span> gdfgdfgdf d gdfg dgdg dg</div>
                 <!--<div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>-->
-                <div><span>Mobile No.</span> {{$user->mobile_number}} </div>
+                <div><span>GST No.</span> 53465475685 </div>
 <!--                <div><span>DATE</span> August 17, 2015</div>
                 <div><span>DUE DATE</span> September 17, 2015</div>-->
+                <div><span>Conginor's Name</span> bhtrgtfg </div>
+                <div><span>Address</span> gdfgdfgdf d gdfg dgdg dg</div>
+                <!--<div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>-->
+                <div><span>GST No.</span> 53465475685 </div>
             </div>
         </header>
         <main>
             <table>
                 <thead>
                     <tr>
-                        <th >Invoice ID</th>
+                        <th >No Of Package</th>
 <!--                        <th class="desc">DESCRIPTION</th>-->
-                        <th>PRICE</th>
-                        <th>GST(%)</th>
+                        <th>Description</th>
+                        <th>Weight</th>
                         <th>TOTAL</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if($user->mealOrders)
-                    @foreach($user->mealOrders as $meal_order)
+              
                     <tr>
-                        <td>{{$meal_order->invoice_id}}</td>
+                        <td>54654</td>
                         <!--<td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>-->
-                        <td>{{$meal_order->item_total_amount}}</td>
-                        <td class="qty">{{$meal_order->gst_amount}}%</td>
-                        <td>{{$meal_order->total_amount}}</td>
+                        <td>hgdogergre</td>
+                        <td class="qty">45654</td>
+                        <td>fre43t</td>
                     </tr>
-                    @endforeach
-                    @endif
+                 
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    @if($user->userBookingDetail->booking_amount_type == 1)
+                 
                     <tr>
                         <td></td>
                         <td></td>
                         <td>BOOKING AMOUNT<small>(Prepaid)</small></td>
-                        <td class="total">- {{$user->userBookingDetail->booking_amount}}</td>
+                        <td class="total">- 545</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td>TOTAL</td>
-                        <td class="total">{{$total}}</td>
+                        <td class="total">5346</td>
                     </tr>
-                    @elseif($user->userBookingDetail->booking_amount_type == 2)
+
+                   
                     <tr>
                         <td></td>
                         <td></td>
-                        <td>BOOKING AMOUNT<small>(Outstanding)</small></td>
-                        <td class="total">{{$user->userBookingDetail->booking_amount}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>TOTAL</td>
-                        <td class="total">{{$total}}</td>
-                    </tr>
-                    @endif
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>DISCOUNT ({{$user->discount}}%)</td>
-                        <td class="total">- {{$discountAmt}}</td>
+                        <td>DISCOUNT 5%</td>
+                        <td class="total">- 546</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td>PAID</td>
-                        <td class="total">- {{$paid}}</td>
+                        <td class="total">- 35</td>
                     </tr>
 
                     <tr>
                         <td></td>
                         <td></td>
                         <td class="grand total">Outstanding</td>
-                        <td class="grand total">{{$outstanding}}</td>
+                        <td class="grand total">534</td>
                     </tr>
                 </tbody>
             </table>

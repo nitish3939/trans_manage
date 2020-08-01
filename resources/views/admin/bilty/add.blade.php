@@ -76,10 +76,6 @@
                             <input type="number" class="form-control" placeholder="GR No." name="gr_no" id="gr_no">
                         </div>
                     </div>
-
-
-
-
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Invoice No*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -109,9 +105,27 @@
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <input type="text" class="form-control" placeholder="Delivery At" name="delivery_at" id="delivery_at">
                         </div>
+                    </div>  
+                    <div id="member_div">
                     </div>
-                    
                     <div class="form-group">
+                        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-10">
+                            <button type="button" class="btn btn-primary" id="add_more_member">Add Items</button>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12" for="w3-last-name">Is it Build Or Paid*</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+															<select name="is_software" class="form-control" id="softwareselector">
+                                                            <option value="" >Select Option</option>
+															<option value="build">To Be Build</option>
+															<option value="paid" >To Be Paid</option>
+															</select>
+														</div>
+													</div>
+														<div id="yes_software">
+														    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Freight*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <input type="text" class="form-control" placeholder="Freight" name="freight" id="freight">
@@ -159,15 +173,12 @@
                             <input type="number" class="form-control" placeholder="G Total" name="g_total" id="g_total">
                         </div>
                     </div>
-                    <div id="member_div">
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-10">
-                            <button type="button" class="btn btn-primary" id="add_more_member">Add Items</button>
-                        </div>
-                    </div>
+                 	</div>
+
+
 
                     <div class="ln_solid"></div>
+               
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-4">
                             <a  class="btn btn-default" href="{{ route('admin.bilty.index') }}">Cancel</a>
@@ -181,11 +192,27 @@
     </div>
 </div>
 
+
+
+
 @endsection
 
 @section('script')
 <script>
     $(document).ready(function () {
+
+        $('#yes_software').hide();
+        $(function () {
+
+$("#softwareselector").change(function () {
+    if ($(this).val() == "paid") {
+        $("#yes_software").show();
+    }   else  {
+        $('#yes_software').hide();
+            }
+   
+});
+});
 
         $(document).on("click", "#add_more_member", function () {
             var member_html = "<div class='form-group'><label class='control-label col-md-2 col-sm-2 col-xs-12'>No Of Packages</label><div class='col-md-2 col-sm-2 col-xs-12'><input type='text' class='form-control' name='packages[]'>"
