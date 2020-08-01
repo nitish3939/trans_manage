@@ -197,7 +197,7 @@ class BiltyController extends Controller {
                         }
                     }
                 }
-                return redirect()->route('admin.bilty.index', $data->id)->with('status', "Bilty has been updated successfully.");
+                return redirect()->route('admin.bilty.index')->with('status', "Bilty has been updated successfully.");
             } else {
                 return redirect()->route('admin.bilty.edit', $data->id)->withErrors("Something went be wrong.")->withInput();
             }
