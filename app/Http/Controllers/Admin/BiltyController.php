@@ -169,7 +169,7 @@ class BiltyController extends Controller {
             $data->value = $request->value;
             $data->charged = $request->charged;
             $data->delivery_at = $request->delivery_at;
-            $bilty->payment = $request->is_software;
+            $data->payment = $request->is_software;
             $data->gr_no = $request->gr_no;
             $data->freight = $request->freight;
             $data->waiting = $request->waiting;
