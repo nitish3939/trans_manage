@@ -27,21 +27,18 @@ Route::namespace("Api")->group(function () {
         fclose($myfile);
     }
 
-
-    Route::get('duty-status', 'StaffController@dutyStatus');
-
-    Route::get('user-counts', 'UserController@userCounts');
-
-    Route::get('get-checkin-detail', 'UserController@getCheckInDetail');
-
-    //City State list
-    Route::get('country-list', 'LocationController@countrylist');
-
-    Route::post('state-city-list', 'UserController@stateCityList');
-    //Sent OTP
-    Route::post('send-otp', 'AuthController@signup');
     //Verify OTP
     Route::post('verify-otp', 'AuthController@login');
+
+    //Accept Trip
+    Route::post('trip-list', 'TripController@tripList');
+    //Accept Trip
+    Route::post('status-trip', 'TripController@statusTrip');
+
+
+
+
+
     //Home
     Route::get('home', 'HomeController@home');
     // Housekeeping & Service listing

@@ -66,6 +66,14 @@ class TripController extends Controller {
                 $usersArray[$i]['end_trip'] = $user->end_trip;
                 $usersArray[$i]['trip_date'] = $user->trip_date;
                 $usersArray[$i]['expense_amount'] = $user->expense_amount;
+                if( $user->is_read == 0){
+                    $usersArray[$i]['status'] = '';
+                 }elseif($user->is_read == 1){
+                    $usersArray[$i]['status'] = '<a class="btn btn-success btn-xs">Accepted</a>';
+                 }elseif($user->is_read == 2){
+                    $usersArray[$i]['status'] = '<a class="btn btn-danger btn-xs">Rejected</a>';
+                 }
+
                 $ob = Fuel::where('trip_id',$user->id)->first();
                 if($ob){
                     $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('subadmin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';

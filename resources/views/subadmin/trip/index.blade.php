@@ -24,6 +24,7 @@
                             <th>End Trip</th>
                             <th>Trip Date</th>
                             <th>Expense Amount</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -62,6 +63,7 @@
                 {"data": "end_trip", sortable: false},
                 {"data": "trip_date", sortable: false},
                 {"data": "expense_amount", sortable: false},
+                {"data": "status", sortable: false},
                 {"data": "view-deatil", sortable: false},
             ]
         });
