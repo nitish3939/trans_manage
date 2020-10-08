@@ -34,7 +34,8 @@ Route::namespace("Api")->group(function () {
     Route::post('trip-list', 'TripController@tripList');
     //Accept Trip
     Route::post('status-trip', 'TripController@statusTrip');
-
+    //Vehicle Issue
+    Route::post('vehicle-issue', 'VehicleController@vehicleIssue');
 
 
 
