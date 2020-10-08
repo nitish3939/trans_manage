@@ -10,13 +10,6 @@
             "group": "Header",
             "type": "String",
             "optional": false,
-            "field": "Authorization",
-            "description": "<p>Users unique access-token.</p>"
-          },
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
             "field": "Accept",
             "description": "<p>application/json.</p>"
           }

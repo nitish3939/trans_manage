@@ -171,7 +171,6 @@ class AuthController extends Controller {
 
     /**
      * @api {get} /api/logout  Logout
-     * @apiHeader {String} Authorization Users unique access-token.
      * @apiHeader {String} Accept application/json.
      * @apiName GetLogout
      * @apiGroup Auth
