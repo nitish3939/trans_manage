@@ -3,7 +3,7 @@ define({
   "version": "1.0.0",
   "description": "",
   "title": "Bajrang apiDoc",
-  "url": "http://sanjeevani.dbaquincy.com",
+  "url": "http://transport.dbaquincy.com",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
