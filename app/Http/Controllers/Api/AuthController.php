@@ -19,7 +19,7 @@ class AuthController extends Controller {
      * @apiGroup Auth
      *
      * @apiParam {String} mobile_number Users mobile number*.
-     * @apiParam {String} otp OTP*.
+     * @apiParam {String} password password*.
      * @apiParam {String} user_type User type*. (Staff member => 2 ).
      * @apiParam {String} longitude cordinate location.
      * @apiParam {String} latitude cordinate location.
@@ -146,20 +146,22 @@ class AuthController extends Controller {
                 return $this->sendErrorResponse("User type invalid.", (object) []);
             }
 
-            $user = User::Where([
+            $credentials = [
                 'user_type_id' => $request->user_type,
                 'mobile_number' => $request->mobile_number,
                 'password' => $request->password
-            ])->first();
-            if (!$user) {
+            ];
+            if (Auth::attempt($credentials)) {
+               
+            }else{
                 return $this->sendErrorResponse("Password or mobile number incorrect.", (object) []);
             }
 
-            if ($user->is_active == 0) {
+            if ($request->user()->is_active == 0) {
                 return $this->sendInactiveAccountResponse();
             }
 
-            return $this->sendSuccessResponse("Password verified successfully.", $user);
+            return $this->sendSuccessResponse("Password verified successfully.", $request->user());
         } catch (\Exception $e) {
             return $this->sendErrorResponse($e->getMessage(), (object) []);
         }

@@ -123,8 +123,8 @@ class StaffController extends Controller {
                     return redirect()->route('admin.staff.add')->with('error', 'User already exists with this mobile number.');
                 } else {
                     $user = $this->user;
-                    $user->otp = 9999;
-                    // $user->password = bcrypt(9999);
+                    $user->otp = 1234;
+                    $user->password = 1234;
                     $user->user_type_id = 2;
                     $user->first_name = $request->f_name;
                     $user->last_name = $request->l_name;
