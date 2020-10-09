@@ -48,8 +48,9 @@ class User extends Authenticatable {
         return $name ? asset('storage/dl/' . $name) : asset("/img/no-image.jpg");
     }
 
-    public function getEmailForPasswordReset() {
-        return $this->email_id;
+    public function setPasswordAttribute($password) {
+        $this->attributes['password'] = bcrypt($password);
     }
+
 
 }
