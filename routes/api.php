@@ -27,6 +27,9 @@ Route::namespace("Api")->group(function () {
         fclose($myfile);
     }
 
+    //Send OTP
+    Route::post('send-otp', 'AuthController@sendOTP');
+
     //Verify OTP
     Route::post('verify-otp', 'AuthController@login');
 
