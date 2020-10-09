@@ -116,24 +116,7 @@ class TripController extends Controller {
      *      "status": true,
      *      "status_code": 200,
      *      "message": "Status Changed successfully.",
-     *       "data": {
-     *      "id": 149,
-     *      "user_id": 6,
-     *      "vehicle_id": 1,
-     *      "trip_date": "2020-10-08",
-     *      "start_trip": "noida1",
-     *      "fuel_entry": "4325",
-     *      "end_trip": "patna",
-     *      "start_km": "5345",
-     *      "end_km": "32532",
-     *      "expense_amount": 5325,
-     *      "expense_description": "42353",
-     *      "amount_spend": 5345,
-     *      "end_fuel_entry": "534",
-     *      "is_read": 0,
-     *      "created_at": "2020-10-08 12:58:24",
-     *      "updated_at": "2020-10-08 12:58:24"
-     *      }
+     *       "data": {}
      *  }
      *  
      * @apiError UserIdMissing The user id is missing.

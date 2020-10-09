@@ -324,7 +324,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n {\n     \"status\": true,\n     \"status_code\": 200,\n     \"message\": \"Status Changed successfully.\",\n      \"data\": {\n     \"id\": 149,\n     \"user_id\": 6,\n     \"vehicle_id\": 1,\n     \"trip_date\": \"2020-10-08\",\n     \"start_trip\": \"noida1\",\n     \"fuel_entry\": \"4325\",\n     \"end_trip\": \"patna\",\n     \"start_km\": \"5345\",\n     \"end_km\": \"32532\",\n     \"expense_amount\": 5325,\n     \"expense_description\": \"42353\",\n     \"amount_spend\": 5345,\n     \"end_fuel_entry\": \"534\",\n     \"is_read\": 0,\n     \"created_at\": \"2020-10-08 12:58:24\",\n     \"updated_at\": \"2020-10-08 12:58:24\"\n     }\n }",
+          "content": "HTTP/1.1 200 OK\n {\n     \"status\": true,\n     \"status_code\": 200,\n     \"message\": \"Status Changed successfully.\",\n      \"data\": {}\n }",
           "type": "json"
         }
       ]
