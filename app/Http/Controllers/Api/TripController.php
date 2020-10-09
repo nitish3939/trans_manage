@@ -177,7 +177,7 @@ class TripController extends Controller {
             if (!$trip) {
                 return $this->sendErrorResponse("Trip Not Found", (object) []);
             }else{
-                $trip->$request->status;
+                $trip->status = $request->status;
                 $trip->save();
               
                 return $this->sendSuccessResponse("Status Changed successfully.", $trip);
