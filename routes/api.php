@@ -42,7 +42,10 @@ Route::namespace("Api")->group(function () {
     //Vehicle Issue
     Route::post('vehicle-issue', 'VehicleController@vehicleIssue');
 
-   //Fuel Fill
-   Route::post('fuel-fill', 'VehicleController@fuelFill');
+    //Fuel Fill
+    Route::post('fuel-fill', 'VehicleController@fuelFill');
+ 
+    //Trip Challan
+    Route::post('trip-challan', 'VehicleController@tripChallan');
 
 });

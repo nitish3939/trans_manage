@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use Validator;
 use Carbon\Carbon;
 use App\Models\Trip;
+use App\Models\Vehicle;
+use App\Models\Challan;
+use App\Models\Fuel;
 
 class VehicleController extends Controller {
 
@@ -283,7 +286,7 @@ class VehicleController extends Controller {
                 $fuel = Storage::disk('public')->put('fuel_pic', $fuel);
                 $fuel_file_name = basename($fuel);
 
-                $vehicle = new Challan();
+                $vehicle = new Fuel();
                 $vehicle->trip_id = $request->trip_id;
                 $vehicle->user_id = $request->user_id;
                 $vehicle->vehicle_id = $request->vehicle_id;
@@ -296,6 +299,120 @@ class VehicleController extends Controller {
 
         
             return $this->sendSuccessResponse("Image Uploded Sucessfully",  (object) []);
+        } catch (\Exception $e) {
+            return $this->sendErrorResponse($e->getMessage(), (object) []);
+        }
+    }
+
+        /**
+     * @api {post} /api/trip-challan  Trip Challan
+     * @apiHeader {String} Accept application/json.
+     * @apiName PostTripChallan
+     * @apiGroup Vehicle
+     *
+     * @apiParam {String} user_id User Id*.
+     * @apiParam {String} vehicle_id Vehicle Id*.
+     * @apiParam {String} longitude challan place longitude*.
+     * @apiParam {String} latitude challan place latitude*.
+     * @apiParam {String} challan_place challan place*.
+     * @apiParam {String} amount Challan Amount*.
+     * @apiParam {String} challan_pic Challan Image*.
+     *
+     * @apiSuccess {String} success true 
+     * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
+     * @apiSuccess {String} message Challan Uploded Sucessfully.
+     * @apiSuccess {JSON} data response.
+     * @apiSuccessExample {json} Success-Response:
+     * HTTP/1.1 200 OK
+     *  {
+     *      "status": true,
+     *      "status_code": 200,
+     *      "message": "Challan Uploded Sucessfully",
+     *      "data": {}
+     *  }
+     *  
+     * @apiError UserIdMissing The user id is missing.
+     * @apiErrorExample Error-Response:
+     * HTTP/1.1 404 Not Found
+     *  {
+     *     "status": false,
+     *     "status_code": 404,
+     *     "message": "User id missing.",
+     *     "data": {}
+     *  }
+     * 
+     * @apiError VehicleIdMissing The vehicle id is missing.
+     * @apiErrorExample Error-Response:
+     * HTTP/1.1 404 Not Found
+     *  {
+     *     "status": false,
+     *     "status_code": 404,
+     *     "message": "Vehicle id missing.",
+     *     "data": {}
+     *  }
+     *  
+     * @apiError UserNotFound The User Not Found.
+     * @apiErrorExample Error-Response:
+     * HTTP/1.1 404 Not Found
+     *  {
+     *     "status": false,
+     *     "status_code": 404,
+     *     "message": "User Not Found",
+     *     "data": {}
+     *  }
+     * 
+     */   
+    public function tripChallan(Request $request) {
+        try {
+         
+            if (!$request->user_id) {
+                return $this->sendErrorResponse("User Id missing.", (object) []);
+            }
+            if (!$request->vehicle_id) {
+                return $this->sendErrorResponse("Vehicle Id missing.", (object) []);
+            }
+            if (!$request->longitude) {
+                return $this->sendErrorResponse("Location missing.", (object) []);
+            }
+            if (!$request->latitude) {
+                return $this->sendErrorResponse("Meter Fuel missing.", (object) []);
+            }
+            if (!$request->challan_place) {
+                return $this->sendErrorResponse("challan Place missing.", (object) []);
+            }
+            if (!$request->amount) {
+                return $this->sendErrorResponse("Fuel Amount missing.", (object) []);
+            }
+            $vehicl = Vehicle::find($request->vehicle_id);
+            if (!$vehicl) {
+                return $this->sendErrorResponse("Vehicle Not Found", (object) []);
+            }
+            $user = User::find($request->user_id);
+            if (!$user) {
+                return $this->sendErrorResponse("User Not Found", (object) []);
+            }
+           
+            if ($request->challan_pic) {
+                if (!$request->hasFile("challan_pic")) {
+                    return $this->errorResponse("challan pic not valid file type.");
+                }
+                $challan_pic = $request->file("challan_pic");
+                $challan = Storage::disk('public')->put('challan_pic', $challan);
+                $challan_file_name = basename($challan);
+
+                $vehicle = new Challan();
+                $vehicle->user_id = $request->user_id;
+                $vehicle->vehicle_id = $request->vehicle_id;
+                $vehicle->challan_place = $request->challan_place;
+                $vehicle->challan_amount = $request->amount;
+                $vehicle->longitude = $request->longitude;
+                $vehicle->latitude = $request->latitude;
+                $vehicle->challan_pic = $challan_file_name;
+                $vehicle->save();
+            }
+
+        
+            return $this->sendSuccessResponse("Challan Uploded Sucessfully",  (object) []);
         } catch (\Exception $e) {
             return $this->sendErrorResponse($e->getMessage(), (object) []);
         }
