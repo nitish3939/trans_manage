@@ -97,7 +97,9 @@ class AuthController extends Controller {
      * @apiParam {String} mobile_number Users mobile number*.
      * @apiParam {String} otp OTP*.
      * @apiParam {String} user_type User type*. (Staff member => 2 ).
-     * @apiParam {String} device_id User device Id (IMEI number)*.
+     * @apiParam {String} longitude cordinate location*.
+     * @apiParam {String} latitude cordinate location*.
+     * 
      *
      * @apiSuccess {String} success true 
      * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 

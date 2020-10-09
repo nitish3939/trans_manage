@@ -224,8 +224,15 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "device_id",
-            "description": "<p>User device Id (IMEI number)*.</p>"
+            "field": "longitude",
+            "description": "<p>cordinate location*.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "latitude",
+            "description": "<p>cordinate location*.</p>"
           }
         ]
       }
