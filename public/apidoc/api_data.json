@@ -65,120 +65,6 @@
   },
   {
     "type": "post",
-    "url": "/api/send-otp",
-    "title": "Send OTP",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Accept",
-            "description": "<p>application/json.</p>"
-          }
-        ]
-      }
-    },
-    "name": "PostSendOtp",
-    "group": "Auth",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "mobile_number",
-            "description": "<p>User unique mobile number*.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "user_type",
-            "description": "<p>User type*. (User =&gt; 2).</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "success",
-            "description": "<p>true</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "status_code",
-            "description": "<p>(200 =&gt; success, 404 =&gt; Not found or failed).</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>OTP sent successfully.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "JSON",
-            "optional": false,
-            "field": "data",
-            "description": "<p>blank object.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n  {\n      \"status\": true,\n      \"status_code\": 200,\n      \"message\": \"OTP sent successfully.\",\n      \"data\": {}\n  }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "MobileNumberMissing",
-            "description": "<p>The mobile number is missing.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "UserTypeMissing",
-            "description": "<p>The User type is missing.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n  {\n      \"status\": false,\n      \"status_code\": 404,\n      \"message\": \"Mobile number missing.\",\n      \"data\": {}\n  }",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n {\n    \"status\": false,\n    \"status_code\": 404,\n    \"message\": \"User type missing.\",\n    \"data\": {}\n }",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Api/AuthController.php",
-    "groupTitle": "Auth"
-  },
-  {
-    "type": "post",
     "url": "/api/verify-otp",
     "title": "Verify OTP",
     "header": {
@@ -225,14 +111,14 @@
             "type": "String",
             "optional": false,
             "field": "longitude",
-            "description": "<p>cordinate location*.</p>"
+            "description": "<p>cordinate location.</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "latitude",
-            "description": "<p>cordinate location*.</p>"
+            "description": "<p>cordinate location.</p>"
           }
         ]
       }
