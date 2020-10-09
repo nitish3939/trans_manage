@@ -498,7 +498,7 @@ class VehicleController extends Controller {
                 return $this->sendErrorResponse("Trip Not Found", (object) []);
             }else{
          
-                $trip->expense_amount = $trip->expense_amount + $request->expense_amount;
+                $trip->amount_spend = $trip->amount_spend + $request->expense_amount;
                 $trip->expense_description = $trip->expense_description .'+'. $request->expense_description;
 
                 $trip->save();

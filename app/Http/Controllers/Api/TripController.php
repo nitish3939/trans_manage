@@ -96,7 +96,7 @@ class TripController extends Controller {
         }
     }
 
-        /**
+    /**
      * @api {post} /api/status-trip  Status Trip
      * @apiHeader {String} Accept application/json.
      * @apiName PostStatusTrip
@@ -170,6 +170,93 @@ class TripController extends Controller {
                 return $this->sendSuccessResponse("Status Changed successfully.", (object) []);
             }
            
+        } catch (\Exception $e) {
+            return $this->sendErrorResponse($e->getMessage(), (object) []);
+        }
+    }
+
+    /**
+     * @api {post} /api/end-trip  Status Trip
+     * @apiHeader {String} Accept application/json.
+     * @apiName PostStatusTrip
+     * @apiGroup Trip
+     *
+     * @apiParam {String} user_id User Id*.
+     * @apiParam {String} trip_id Trip Id*.
+     * @apiParam {String} location User Id*.
+     * @apiParam {String} end_meter_fuel End Fuel Meter Reading*.
+     * @apiParam {String} end_meter_km End Meter Reading*.
+     *
+     * @apiSuccess {String} success true 
+     * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
+     * @apiSuccess {String}  message End Trip Sucessfully.
+     * @apiSuccess {JSON} data response.
+     * @apiSuccessExample {json} Success-Response:
+     * HTTP/1.1 200 OK
+     *  {
+     *      "status": true,
+     *      "status_code": 200,
+     *      "message": "End Trip Sucessfully",
+     *      "data": {}
+     *  }
+     *  
+     * @apiError UserIdMissing The user id is missing.
+     * @apiErrorExample Error-Response:
+     * HTTP/1.1 404 Not Found
+     *  {
+     *     "status": false,
+     *     "status_code": 404,
+     *     "message": "User id missing.",
+     *     "data": {}
+     *  }
+     *  
+     * @apiError UserNotFound The User Not Found.
+     * @apiErrorExample Error-Response:
+     * HTTP/1.1 404 Not Found
+     *  {
+     *     "status": false,
+     *     "status_code": 404,
+     *     "message": "User Not Found",
+     *     "data": {}
+     *  }
+     * 
+     */   
+
+    public function endTrip(Request $request) {
+        try {
+            if (!$request->location) {
+                return $this->sendErrorResponse("Location missing.", (object) []);
+            }
+            if (!$request->end_meter_fuel) {
+                return $this->sendErrorResponse("End Meter Fuel missing.", (object) []);
+            }
+            if (!$request->end_meter_km) {
+                return $this->sendErrorResponse("End Km missing.", (object) []);
+            }
+            if (!$request->trip_id) {
+                return $this->sendErrorResponse("Trip Id missing.", (object) []);
+            }
+            if (!$request->user_id) {
+                return $this->sendErrorResponse("User Id missing.", (object) []);
+            }
+            $user = User::find($request->user_id);
+            if (!$user) {
+                return $this->sendErrorResponse("User Not Found", (object) []);
+            }
+            $trip = Trip::find($request->trip_id);
+            if (!$trip) {
+                return $this->sendErrorResponse("Trip Not Found", (object) []);
+            }else{
+         
+                $trip->end_trip_location = $request->location;
+                $trip->end_fuel_entry = $request->end_meter_fuel;
+                $trip->end_km = $request->end_meter_km;
+                
+                $trip->save();
+           
+            return $this->sendSuccessResponse("End Trip Sucessfully",  (object) []);
+            }          
+   
         } catch (\Exception $e) {
             return $this->sendErrorResponse($e->getMessage(), (object) []);
         }

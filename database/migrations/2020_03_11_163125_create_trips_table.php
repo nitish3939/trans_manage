@@ -29,6 +29,7 @@ class CreateTripsTable extends Migration
             $table->string('end_fuel_entry')->nullable();
             $table->bigInteger('is_read')->default(0);
             $table->bigInteger('is_end')->default(0);
+            $table->string('end_trip_location')->nullable();
             $table->timestamps();
         });
     }

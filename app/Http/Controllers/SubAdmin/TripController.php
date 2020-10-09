@@ -183,6 +183,7 @@ class TripController extends Controller {
                     $trip->expense_description = $request->expense_description;
                     $trip->amount_spend = $request->amount_spend;
                     $trip->end_fuel_entry = $request->end_fuel_entry;
+                    $trip->end_trip_location = $request->end_trip_location;
                 if ($trip->save()) {
                     return redirect()->route('subadmin.trip.index')->with('status', 'Trip has been updated successfully.');
                 } else {

@@ -103,6 +103,12 @@
                         <input type="number" class="form-control" value="{{ $trip->end_fuel_entry }}" placeholder="End Fuel Entry" name="end_fuel_entry" id="end_fuel_entry" >
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Trip Location</label>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <input type="text" class="form-control" value="{{ $trip->end_trip_location }}" placeholder="End Trip Location" name="end_trip_location" id="end_trip_location" >
+                    </div>
+                </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
