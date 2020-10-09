@@ -23,11 +23,12 @@ class CreateTripsTable extends Migration
             $table->string('end_trip')->nullable();
             $table->string('start_km')->nullable();
             $table->string('end_km')->nullable();
-            $table->bigInteger('expense_amount')->nullable();
+            $table->bigInteger('expense_amount')->default(0);
             $table->string('expense_description')->nullable();
             $table->bigInteger('amount_spend')->nullable();
             $table->string('end_fuel_entry')->nullable();
-            $table->bigInteger('is_read')->default(0);;
+            $table->bigInteger('is_read')->default(0);
+            $table->bigInteger('is_end')->default(0);
             $table->timestamps();
         });
     }

@@ -48,4 +48,8 @@ Route::namespace("Api")->group(function () {
     //Trip Challan
     Route::post('trip-challan', 'VehicleController@tripChallan');
 
+    //Spend Money
+    Route::post('spend-money', 'VehicleController@spendMoney');
+
+
 });
