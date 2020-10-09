@@ -97,6 +97,7 @@ class TripController extends Controller {
                     $fuel->vehicle_id = $request->vehicle_id;
                     $fuel->location = $request->location;
                     $fuel->payment = $request->payment;
+                    $fuel->meter_fuel = $request->meter_fuel;
                 if ($fuel->save()) {
                     return redirect()->route('subadmin.trip.index')->with('status', 'Fuel has been updated successfully.');
                 } else {
