@@ -213,7 +213,7 @@ class BiltyController extends Controller {
         ];
         $trips = Trip::all();
         $bilty_items = BiltyItem::Where('bilty_id',$data->id)->get();
-        return view('admin.bilty.edit', [
+        return view('subadmin.bilty.edit', [
             'js' => $js,
             'css' => $css,
             'trips' => $trips,

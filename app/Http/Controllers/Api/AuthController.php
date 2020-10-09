@@ -12,6 +12,82 @@ use App\Models\Trip;
 
 class AuthController extends Controller {
 
+       /**
+     * @api {post} /api/send-otp  Send OTP
+     * @apiHeader {String} Accept application/json. 
+     * @apiName PostSendOtp
+     * @apiGroup Auth
+     * 
+     * @apiParam {String} mobile_number User unique mobile number*.
+     * @apiParam {String} user_type User type*. (User => 2).
+     * 
+     * @apiSuccess {String} success true 
+     * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
+     * @apiSuccess {String} message OTP sent successfully.
+     * @apiSuccess {JSON} data blank object.
+     * 
+     * @apiSuccessExample {json} Success-Response:
+     * HTTP/1.1 200 OK
+     *   {
+     *       "status": true,
+     *       "status_code": 200,
+     *       "message": "OTP sent successfully.",
+     *       "data": {}
+     *   }
+     * 
+     * @apiError MobileNumberMissing The mobile number is missing.
+     * @apiErrorExample Error-Response:
+     * HTTP/1.1 404 Not Found
+     *   {
+     *       "status": false,
+     *       "status_code": 404,
+     *       "message": "Mobile number missing.",
+     *       "data": {}
+     *   }
+     * 
+     * @apiError UserTypeMissing The User type is missing.
+     * @apiErrorExample Error-Response:
+     * HTTP/1.1 404 Not Found
+     *  {
+     *     "status": false,
+     *     "status_code": 404,
+     *     "message": "User type missing.",
+     *     "data": {}
+     *  }
+     * 
+     *  
+     */
+    public function sendOTP(Request $request) {
+        if (!$request->mobile_number) {
+            return $this->errorResponse("Mobile number missing");
+        }
+        if (!$request->user_type) {
+            return $this->errorResponse("User type missing");
+        }
+        if (!(in_array($request->user_type, [2]))) {
+            return $this->sendErrorResponse("User type invalid.", (object) []);
+        }
+        if (strlen($request->mobile_number) != 10) {
+            return $this->sendErrorResponse("Mobile number should be 10 digit.", (object) []);
+        }
+        $otp = 1234;
+        if ($request->user_type == 2) {
+            $existingUser = User::where(['user_type_id' => $request->user_type, 'mobile_number' => $request->mobile_number])->first();
+            if ($existingUser) {
+                $existingUser->otp = $otp;
+                if ($existingUser->save()) {
+                    // try {
+                    //     $this->sendOTPMobile($request->mobile_number, $otp, "KdL20Pu35u2");
+                    // } catch (Exception $ex) {
+                        
+                    // }
+                    return $this->successResponse("OTP sent successfully.", (object) []);
+                }
+            } else {
+                return $this->errorResponse("You have not registered with us.");
+            }
+        }
+    }
     /**
      * @api {post} /api/verify-otp  Verify OTP
      * @apiHeader {String} Accept application/json.
