@@ -108,15 +108,32 @@ class TripController extends Controller {
      *
      * @apiSuccess {String} success true 
      * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
-     * @apiSuccess {String}  message Trip List.
+     * @apiSuccess {String}  message Status Changed successfully..
      * @apiSuccess {JSON} data response.
      * @apiSuccessExample {json} Success-Response:
      * HTTP/1.1 200 OK
      *  {
      *      "status": true,
      *      "status_code": 200,
-     *      "message": "Trip List",
-     *      "data": {}
+     *      "message": "Status Changed successfully.",
+     *       "data": {
+     *      "id": 149,
+     *      "user_id": 6,
+     *      "vehicle_id": 1,
+     *      "trip_date": "2020-10-08",
+     *      "start_trip": "noida1",
+     *      "fuel_entry": "4325",
+     *      "end_trip": "patna",
+     *      "start_km": "5345",
+     *      "end_km": "32532",
+     *      "expense_amount": 5325,
+     *      "expense_description": "42353",
+     *      "amount_spend": 5345,
+     *      "end_fuel_entry": "534",
+     *      "is_read": 0,
+     *      "created_at": "2020-10-08 12:58:24",
+     *      "updated_at": "2020-10-08 12:58:24"
+     *      }
      *  }
      *  
      * @apiError UserIdMissing The user id is missing.
@@ -156,18 +173,14 @@ class TripController extends Controller {
                 return $this->errorResponse("Select valid Status type");
             }
 
-            $trip = Trip::Where([
-                'user_id' => $request->user_id,
-                'id' => $request->trip_id,
-                'is_read' => 0
-            ])->first();
+            $trip = Trip::find($request->trip_id);
             if (!$trip) {
                 return $this->sendErrorResponse("Trip Not Found", (object) []);
             }else{
                 $trip->$request->status;
                 $trip->save();
               
-                return $this->sendSuccessResponse("Status Changed successfully.", (object) []);
+                return $this->sendSuccessResponse("Status Changed successfully.", $trip);
             }
            
         } catch (\Exception $e) {
