@@ -173,9 +173,9 @@ class TripController extends Controller {
     }
 
     /**
-     * @api {post} /api/end-trip  Status Trip
+     * @api {post} /api/end-trip  End Trip
      * @apiHeader {String} Accept application/json.
-     * @apiName PostStatusTrip
+     * @apiName PostEndTrip
      * @apiGroup Trip
      *
      * @apiParam {String} user_id User Id*.
