@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Validator;
 use Carbon\Carbon;
 use App\Models\Trip;
 use App\Models\Vehicle;
+use App\Models\VehicleIssue;
 use App\Models\Challan;
 use App\Models\Fuel;
 
@@ -93,7 +95,7 @@ class VehicleController extends Controller {
                     return $this->errorResponse("Issue pic not valid file type.");
                 }
                 $issue_pic = $request->file("issue_pic");
-                $issue = Storage::disk('public')->put('issue_pic', $issue);
+                $issue = Storage::disk('public')->put('issue_pic', $issue_pic);
                 $issue_file_name = basename($issue);
 
                 $vehicle = new VehicleIssue();
@@ -283,7 +285,7 @@ class VehicleController extends Controller {
                     return $this->errorResponse("fuel pic not valid file type.");
                 }
                 $fuel_pic = $request->file("fuel_pic");
-                $fuel = Storage::disk('public')->put('fuel_pic', $fuel);
+                $fuel = Storage::disk('public')->put('fuel_pic', $fuel_pic);
                 $fuel_file_name = basename($fuel);
 
                 $vehicle = new Fuel();
@@ -397,7 +399,7 @@ class VehicleController extends Controller {
                     return $this->errorResponse("challan pic not valid file type.");
                 }
                 $challan_pic = $request->file("challan_pic");
-                $challan = Storage::disk('public')->put('challan_pic', $challan);
+                $challan = Storage::disk('public')->put('challan_pic', $challan_pic);
                 $challan_file_name = basename($challan);
 
                 $vehicle = new Challan();
