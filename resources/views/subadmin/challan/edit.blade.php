@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Challan preview</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <img  style="width: 100px; height: 100px;" src="{{ asset('storage/challan_pic/'.$challan->challan_pic) }}" >
+                        <img  style="width: 100px; height: 100px;" src="{{ $challan->challan_pic }}" >
                     </div>
                 </div>
                 <div class="form-group">

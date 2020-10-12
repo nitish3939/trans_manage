@@ -73,42 +73,17 @@
                         <input type="number" class="form-control" value="{{ $trip->start_km }}" placeholder="Start KM" name="start_km" id="start_km" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Distance(KM)</label>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="number" class="form-control" value="{{ $trip->end_km }}" placeholder="End KM" name="end_km" id="end_km" >
-                    </div>
-                </div>
+              
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Amount</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="number" class="form-control" value="{{ $trip->expense_amount }}" placeholder="Expense Amount" name="expense_amount" id="expense_amount" >
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Amount Spend</label>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="number" class="form-control" value="{{ $trip->amount_spend }}" placeholder="Amount Spend" name="amount_spend" id="amount_spend" >
-                    </div>
-                </div>
-                <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Description</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" value="{{ $trip->expense_description }}" placeholder="Expense Description" name="expense_description" id="expense_description" >
-                        </div>
-                    </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Fuel Entry(L)</label>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="number" class="form-control" value="{{ $trip->end_fuel_entry }}" placeholder="End Fuel Entry" name="end_fuel_entry" id="end_fuel_entry" >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Trip Location</label>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" class="form-control" value="{{ $trip->end_trip_location }}" placeholder="End Trip Location" name="end_trip_location" id="end_trip_location" >
-                    </div>
-                </div>
+         
+            
+          
+           
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
