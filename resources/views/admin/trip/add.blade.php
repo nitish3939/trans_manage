@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Trip Date*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="date" class="form-control" placeholder="Trip Date" name="trip_date" id="trip_date" required>
+                            <input type="date" class="form-control" placeholder="Trip Date" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" name="trip_date" id="trip_date" required>
                         </div>
                     </div>
                     <div class="ln_solid"></div>

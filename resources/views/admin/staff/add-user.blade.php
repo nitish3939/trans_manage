@@ -39,10 +39,11 @@
                             <input  type="text" class="form-control" placeholder="Email" name="staff_email" id="staff_email">
                         </div>
                     </div>
+                   
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Dob*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="date" class="form-control" name="staff_dob" id="staff_dob" required>
+                            <input type="date" class="form-control" name="staff_dob" id="staff_dob" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" required>
                         </div>
                     </div>
                     <div class="form-group">

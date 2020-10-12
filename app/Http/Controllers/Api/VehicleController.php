@@ -102,6 +102,7 @@ class VehicleController extends Controller {
                 $vehicle->user_id = $request->user_id;
                 $vehicle->vehicle_id = $request->vehicle_id;
                 $vehicle->bill_image = $issue_file_name;
+                $vehicle->issue_date = Carbon::now()->format('Y-m-d');
                 $vehicle->save();
             }
 
