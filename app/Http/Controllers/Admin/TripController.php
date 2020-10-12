@@ -89,13 +89,16 @@ class TripController extends Controller {
                         $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
                     }
                  }
+                      
+                 $i++;
+                }
+                $data['data'] = $usersArray;
+                return $data;
+            } catch (\Exception $e) {
+                dd($e);
             }
-            $data['data'] = $usersArray;
-            return $data;
-        } catch (\Exception $e) {
-            dd($e);
         }
-    }
+    
 
     public function addTrip(Request $request) {
         try {
