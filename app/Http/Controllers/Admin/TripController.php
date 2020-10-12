@@ -66,21 +66,29 @@ class TripController extends Controller {
                 $usersArray[$i]['end_trip'] = $user->end_trip;
                 $usersArray[$i]['trip_date'] = $user->trip_date;
                 $usersArray[$i]['expense_amount'] = $user->expense_amount;
-                 if( $user->is_read == 0){
+                $ob = Fuel::where('trip_id',$user->id)->first();
+                if( $user->is_read == 0){
                     $usersArray[$i]['status'] = '';
+                    if($ob){
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('admin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';
+                    }else{
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
+                    }
                  }elseif($user->is_read == 1){
                     $usersArray[$i]['status'] = '<a class="btn btn-success btn-xs">Accepted</a>';
+                    if($ob){
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.view', ['id' => $user->id]) . '"><i class="fa fa-eye"></i>View</a><a class="btn btn-info btn-xs" href="' . route('admin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';
+                    }else{
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.view', ['id' => $user->id]) . '"><i class="fa fa-eye"></i>View</a>';
+                    }
                  }elseif($user->is_read == 2){
                     $usersArray[$i]['status'] = '<a class="btn btn-danger btn-xs">Rejected</a>';
+                    if($ob){
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('admin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';
+                    }else{
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
+                    }
                  }
-
-                $ob = Fuel::where('trip_id',$user->id)->first();
-                if($ob){
-                    $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('admin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';
-                }else{
-                    $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
-                }
-                $i++;
             }
             $data['data'] = $usersArray;
             return $data;
@@ -129,7 +137,49 @@ class TripController extends Controller {
             return redirect()->route('admin.trip.index')->with('error', $ex->getMessage());
         }
     }
-
+    public function viewTrip(Request $request, $id) {
+        try {
+            $trip = Trip::where('id',$id)->with(['vehicle','user'])->first();
+            if ($request->isMethod("post")) {
+                $trip->user_id = $request->user_id;
+                    $trip->vehicle_id = $request->vehicle_id;
+                    $trip->trip_date = $request->trip_date;
+                    $trip->start_trip = $request->start_trip;
+                    $trip->fuel_entry = $request->fuel_entry;
+                    $trip->end_trip = $request->end_trip;
+                    $trip->start_km = $request->start_km;
+                    $trip->end_km = $request->end_km;
+                    $trip->expense_amount = $request->expense_amount;
+                    $trip->expense_description = $request->expense_description;
+                    $trip->amount_spend = $request->amount_spend;
+                    $trip->end_fuel_entry = $request->end_fuel_entry;
+                    $trip->end_trip_location = $request->end_trip_location;
+                if ($trip->save()) {
+                    return redirect()->route('admin.trip.index')->with('status', 'Trip has been updated successfully.');
+                } else {
+                    return redirect()->route('admin.trip.index', $id)->with('error', 'Something went be wrong.');
+                }
+            }
+            $css = [
+                "vendors/iCheck/skins/flat/green.css",
+            ];
+            $js = [
+                'vendors/iCheck/icheck.min.js',
+            ];
+            $vehicle = Vehicle::all();
+            $driver = User::where('user_type_id', 2)->where('is_active',1)->get();
+            return view('admin.trip.view', [
+                'css' => $css,
+                'js' => $js,
+                'trip' => $trip,
+                'vehicle' => $vehicle,
+                'driver' => $driver,
+                    ]
+            );
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.trip.index')->with('error', $ex->getMessage());
+        }
+    }
 
     public function editTrip(Request $request, $id) {
         try {

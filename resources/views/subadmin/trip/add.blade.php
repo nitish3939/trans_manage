@@ -75,15 +75,13 @@
                     </div>
                
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Amount</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Amount*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="number" class="form-control" placeholder="Expense Amount" name="expense_amount" id="expense_amount" required >
+                            <input type="number" class="form-control" placeholder="Expense Amount" name="expense_amount" id="expense_amount" min="0" required >
                         </div>
                     </div>
                  
                  
-            
-
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-4">
