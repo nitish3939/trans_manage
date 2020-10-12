@@ -49,7 +49,7 @@ class TripController extends Controller {
             $query->with(['vehicle','user']);
             if ($searchKeyword) {
                 $query->where(function($query) use($searchKeyword) {
-                    $query->where("challan_no", "LIKE", "%$searchKeyword%");
+                    $query->where("start_trip", "LIKE", "%$searchKeyword%");
                 });
             }
 
