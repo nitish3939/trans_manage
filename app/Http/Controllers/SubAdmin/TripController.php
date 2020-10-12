@@ -148,11 +148,11 @@ class TripController extends Controller {
                     $trip->fuel_entry = $request->fuel_entry;
                     $trip->end_trip = $request->end_trip;
                     $trip->start_km = $request->start_km;
-                    $trip->end_km = $request->end_km;
+                    $trip->end_km = NULL;
                     $trip->expense_amount = $request->expense_amount;
                     $trip->expense_description = NULL;
                     $trip->amount_spend = 0;
-                    $trip->end_fuel_entry = $request->end_fuel_entry;
+                    $trip->end_fuel_entry = NULL;
                     if ($trip->save()) {
                         return redirect()->route('subadmin.trip.index')->with('status', 'Trip has been added successfully');
                     } else {

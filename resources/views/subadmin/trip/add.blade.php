@@ -73,12 +73,7 @@
                             <input type="number" class="form-control" placeholder="Start KM" name="start_km" id="start_km" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Distance(KM)</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="number" class="form-control" placeholder="End KM" name="end_km" id="end_km" >
-                        </div>
-                    </div>
+               
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Amount</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -87,12 +82,7 @@
                     </div>
                  
                  
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Fuel Entry(L)</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="number" class="form-control" placeholder="End Fuel Entry" name="end_fuel_entry" id="end_fuel_entry" >
-                        </div>
-                    </div>
+            
 
                     <div class="ln_solid"></div>
                     <div class="form-group">
