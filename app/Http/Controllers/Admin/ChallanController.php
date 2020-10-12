@@ -63,7 +63,7 @@ class ChallanController extends Controller {
                 $usersArray[$i]['vehicle_no'] = $user->vehicle_id?$user->vehicle->vehicle_no:"";
                 $usersArray[$i]['challan_place'] = $user->challan_place;
                 $usersArray[$i]['challan_amount'] = $user->challan_amount;
-                $usersArray[$i]['challan_pic'] = $user->challan_pic;
+                $usersArray[$i]['challan_pic'] = '<img class="img-bordered" height="60" width="100" src=' . $user->challan_pic . '>';
                 $usersArray[$i]['issue_date'] = $user->created_at->format('d-M-Y');
                 $usersArray[$i]['description'] = $user->description;
                 $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.challan.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
