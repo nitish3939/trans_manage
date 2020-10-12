@@ -16,5 +16,8 @@ class VehicleIssue extends Model
         {
             return $this->belongsTo('App\Models\User', 'user_id');
         }
+        public function getBillImageAttribute($name) {
+            return $name ? asset('storage/issue_pic/' . $name) : asset("/img/no-image.jpg");
+        }
 
 }
