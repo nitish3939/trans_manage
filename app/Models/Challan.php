@@ -13,4 +13,7 @@ class Challan extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
+    public function getChallanPicAttribute($name) {
+        return $name ? asset('storage/challan_pic/' . $name) : asset("/img/no-image.jpg");
+    }
 }

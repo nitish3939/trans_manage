@@ -12,5 +12,7 @@ class Fuel extends Model
     public function user() {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
-
+    public function getFuelBillImageAttribute($name) {
+        return $name ? asset('storage/fuel_pic/' . $name) : asset("/img/no-image.jpg");
+    }
 }
