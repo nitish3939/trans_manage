@@ -138,8 +138,8 @@ class TripController extends Controller {
                     $trip->start_km = $request->start_km;
                     $trip->end_km = $request->end_km;
                     $trip->expense_amount = $request->expense_amount;
-                    $trip->expense_description = $request->expense_description;
-                    $trip->amount_spend = $request->amount_spend;
+                    $trip->expense_description = NULL;
+                    $trip->amount_spend = 0;
                     $trip->end_fuel_entry = $request->end_fuel_entry;
                     if ($trip->save()) {
                         return redirect()->route('subadmin.trip.index')->with('status', 'Trip has been added successfully');
@@ -154,7 +154,7 @@ class TripController extends Controller {
                 "vendors/iCheck/icheck.min.js",
             ];
             $vehicle = Vehicle::all();
-            $driver = User::where('user_type_id', 2)->get();
+            $driver = User::where('user_type_id', 2)->where('is_active',1)->get();
             return view('subadmin.trip.add', [
                 'css' => $css,
                 'js' => $js,
@@ -197,7 +197,7 @@ class TripController extends Controller {
                 'vendors/iCheck/icheck.min.js',
             ];
             $vehicle = Vehicle::all();
-            $driver = User::where('user_type_id', 2)->get();
+            $driver = User::where('user_type_id', 2)->where('is_active',1)->get();
             return view('subadmin.trip.edit', [
                 'css' => $css,
                 'js' => $js,

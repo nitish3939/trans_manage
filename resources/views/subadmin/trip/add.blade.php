@@ -85,18 +85,8 @@
                             <input type="number" class="form-control" placeholder="Expense Amount" name="expense_amount" id="expense_amount" >
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Amount Spend</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="number" class="form-control" placeholder="Amount Spend" name="amount_spend" id="amount_spend" >
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Description</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Expense Description" name="expense_description" id="expense_description" >
-                        </div>
-                    </div>
+                 
+                 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">End Fuel Entry(L)</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
