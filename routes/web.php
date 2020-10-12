@@ -105,6 +105,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::match(['get', 'post'], '/add-trip', 'TripController@addTrip')->name('admin.trip.add');
         Route::match(['get', 'post'], '/fuel/{id}', 'TripController@fuelTrip')->name('admin.trip.fuel');
         Route::match(['get', 'post'], '/edit/{id}', 'TripController@editTrip')->name('admin.trip.edit');
+        Route::match(['get', 'post'], '/view/{id}', 'TripController@viewTrip')->name('admin.trip.view');
     });
 
    /**

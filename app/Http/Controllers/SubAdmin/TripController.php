@@ -35,7 +35,7 @@ class TripController extends Controller {
     }
 
     /**
-     * Challan Listing
+     * Trip Listing
      *
      * @param Request $request [handle request]
      * @return pages
