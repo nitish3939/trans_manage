@@ -94,7 +94,7 @@
                 <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Description</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" value="{{ $trip->expense_description }}" placeholder="Expense Description" name="expense_description" id="expense_description" disabled>
+                        <p>{{ $trip->expense_description }}" </p>
                         </div>
                     </div>
                 <div class="form-group">
