@@ -92,7 +92,7 @@ class VehicleController extends Controller {
            
             if ($request->issue_pic) {
                 if (!$request->hasFile("issue_pic")) {
-                    return $this->errorResponse("Issue pic not valid file type.");
+                    return $this->sendErrorResponse("Issue pic not valid file type.");
                 }
                 $issue_pic = $request->file("issue_pic");
                 $issue = Storage::disk('public')->put('issue_pic', $issue_pic);
@@ -207,7 +207,7 @@ class VehicleController extends Controller {
            
             if ($request->fuel_pic) {
                 if (!$request->hasFile("fuel_pic")) {
-                    return $this->errorResponse("fuel pic not valid file type.");
+                    return $this->sendErrorResponse("fuel pic not valid file type.");
                 }
                 $fuel_pic = $request->file("fuel_pic");
                 $fuel = Storage::disk('public')->put('fuel_pic', $fuel_pic);
@@ -321,7 +321,7 @@ class VehicleController extends Controller {
            
             if ($request->challan_pic) {
                 if (!$request->hasFile("challan_pic")) {
-                    return $this->errorResponse("challan pic not valid file type.");
+                    return $this->sendErrorResponse("challan pic not valid file type.");
                 }
                 $challan_pic = $request->file("challan_pic");
                 $challan = Storage::disk('public')->put('challan_pic', $challan_pic);

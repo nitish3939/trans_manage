@@ -7,7 +7,7 @@
         @include('errors.errors-and-messages')
         <div class="x_panel">
             <div class="x_title">
-                <h2>Edit Trip </h2>
+                <h2>View Trip </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Start trip*</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" class="form-control" value="{{ $trip->start_trip }}" placeholder="Start Trip" name="start_trip" id="start_trip" disabled>
+                        <p>{{ $trip->start_trip }} </p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">End Trip*</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" class="form-control" value="{{ $trip->end_trip }}" placeholder="End Trip" name="end_trip" id="end_trip" disabled>
+                        <p>{{ $trip->end_trip }}</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -94,7 +94,7 @@
                 <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Description</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                        <p>{{ $trip->expense_description }}" </p>
+                        <p>{{ $trip->expense_description }}</p>
                         </div>
                     </div>
                 <div class="form-group">

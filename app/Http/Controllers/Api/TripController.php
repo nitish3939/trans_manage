@@ -254,7 +254,7 @@ class TripController extends Controller {
                 return $this->sendErrorResponse("Trip Id missing.", (object) []);
             }
             if (!in_array($request->status, [1, 2])) {
-                return $this->errorResponse("Select valid Status type");
+                return $this->sendErrorResponse("Select valid Status type");
             }
 
             $trip = Trip::find($request->trip_id);
