@@ -52,7 +52,13 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Start trip*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Start Trip" name="start_trip" id="start_trip" required>
+                            <textarea class="form-control" rows="4" cols="50" name="start_trip" id="start_trip" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Trip*</label>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <textarea class="form-control" rows="4" cols="50" name="end_trip" id="end_trip" required></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,12 +67,7 @@
                             <input type="number" class="form-control" placeholder="Fuel Entry" name="fuel_entry" id="fuel_entry" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">End Trip*</label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="End Trip" name="end_trip" id="end_trip" required>
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Distance(KM)*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">

@@ -52,7 +52,13 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Start trip*</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" class="form-control" value="{{ $trip->start_trip }}" placeholder="Start Trip" name="start_trip" id="start_trip" disabled>
+                    <textarea class="form-control" rows="4" cols="50" name="start_trip" id="start_trip" disabled>{{ $trip->start_trip }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Trip*</label>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                    <textarea class="form-control" rows="4" cols="50" name="end_trip" id="end_trip" disabled>{{ $trip->end_trip }}</textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -61,12 +67,7 @@
                         <input type="number" class="form-control" value="{{ $trip->fuel_entry }}" placeholder="Fuel Entry" name="fuel_entry" id="fuel_entry" disabled>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">End Trip*</label>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" class="form-control" value="{{ $trip->end_trip }}" placeholder="End Trip" name="end_trip" id="end_trip" disabled>
-                    </div>
-                </div>
+             
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Distance(KM)*</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
@@ -94,7 +95,7 @@
                 <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Expense Description</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p>{{ $trip->expense_description }} </p>
+                            <textarea class="form-control" rows="4" cols="50"  disabled>{{ $trip->expense_description }}</textarea>
                         </div>
                     </div>
                 <div class="form-group">
