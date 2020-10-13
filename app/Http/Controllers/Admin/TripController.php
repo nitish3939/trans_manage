@@ -232,11 +232,9 @@ class TripController extends Controller {
             return redirect()->route('admin.trip.index')->with('error', $ex->getMessage());
         }
     }
-
-
-    public function fuelTrip(Request $request, $id) {
+    public function fuelViewTrip(Request $request, $id) {
         try {
-            $fuel = Fuel::where('trip_id',$id)->with(['vehicle','user'])->first();
+            $fuel = Fuel::find($id);
             if ($request->isMethod("post")) {
                     $fuel->user_id = $request->user_id;
                     $fuel->vehicle_id = $request->vehicle_id;
@@ -257,7 +255,7 @@ class TripController extends Controller {
             ];
             $vehicle = Vehicle::all();
             $driver = User::where('user_type_id', 2)->get();
-            return view('admin.trip.fuel', [
+            return view('admin.trip.fuelView', [
                 'css' => $css,
                 'js' => $js,
                 'fuel' => $fuel,
@@ -269,6 +267,53 @@ class TripController extends Controller {
             return redirect()->route('admin.trip.index')->with('error', $ex->getMessage());
         }
     }
+    public function fuelTrip(Request $request, $id) {
+        try {
 
+            $query = Fuel::query();
+            $query->where('trip_id',$id)->with(['vehicle','user']);
+            // // $query->where("user_type_id", "=", 2);
+            // if ($searchKeyword) {
+            //     $query->where(function($query) use($searchKeyword) {
+            //         $query->where("vehicle_owner_name", "LIKE", "%$searchKeyword%")->orWhere("rc_no", "LIKE", "%$searchKeyword%")->orWhere("vehicle_no", "LIKE", "%$searchKeyword%");
+            //     });
+            // }
+
+            // $data['recordsTotal'] = $query->count();
+            // $data['recordsFiltered'] = $query->count();
+            $vehicles = $query->latest()->get();
+
+            $i = 0;
+            $usersArray = [];
+            foreach ($vehicles as $user) {
+                $usersArray[$i]['id'] = $user->id;
+                $usersArray[$i]['user_name'] = $user->user->first_name;
+                $usersArray[$i]['vehicle_no'] = $user->vehicle->vehicle_no;
+                $usersArray[$i]['payment'] = $user->payment;
+                $usersArray[$i]['view-deatil'] = '<a class="btn btn-danger btn-xs" href="' . route('admin.trip.fuelView', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>View</a>';
+                $i++;
+            }
+            $data['data'] = $usersArray;
+
+            $css = [
+                "vendors/iCheck/skins/flat/green.css",
+            ];
+            $js = [
+                'vendors/iCheck/icheck.min.js',
+            ];
+            $vehicle = Vehicle::all();
+            $driver = User::where('user_type_id', 2)->get();
+            return view('admin.trip.fuel', [
+                'css' => $css,
+                'js' => $js,
+                'usersArray' => $usersArray,
+                'vehicle' => $vehicle,
+                'driver' => $driver,
+                    ]
+            );
+        } catch (Exception $ex) {
+            dd($e);
+        }
+    }
 
 }
