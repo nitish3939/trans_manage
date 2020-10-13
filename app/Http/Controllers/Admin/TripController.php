@@ -47,12 +47,17 @@ class TripController extends Controller {
             $searchKeyword = $request->get('search')['value'];
             $query = Trip::query();
             $query->with(['vehicle','user']);
+            // if ($searchKeyword) {
+            //     $query->where(function($query) use($searchKeyword) {
+            //         $query->where("start_trip", "LIKE", "%$searchKeyword%");
+            //     });
+            // }
             if ($searchKeyword) {
-                $query->where(function($query) use($searchKeyword) {
-                    $query->where("start_trip", "LIKE", "%$searchKeyword%");
+                $query->whereHas("user", function($query) use($searchKeyword) {
+                    $query->where("first_name", "LIKE", "%$searchKeyword%")
+                            ->orWhere("mobile_number", "LIKE", "%$searchKeyword%");
                 });
             }
-
             $data['recordsTotal'] = $query->count();
             $data['recordsFiltered'] = $query->count();
             $vehicles = $query->take($limit)->offset($offset)->latest()->get();

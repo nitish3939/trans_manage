@@ -23,7 +23,7 @@
                                     <option value="">Choose Driver</option>
 
                                 @foreach ($driver as $dri)
-                                <option value="{{$dri->id}}">{{$dri->first_name}}</option>
+                                <option value="{{$dri->id}}">{{$dri->first_name}} ({{$dri->mobile_number}})</option>
                                 @endforeach
                                 </select>
                                 @endif
