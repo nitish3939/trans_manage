@@ -119,6 +119,13 @@ define({ "api": [
             "optional": false,
             "field": "latitude",
             "description": "<p>cordinate location.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcm_token",
+            "description": "<p>Token*.</p>"
           }
         ]
       }

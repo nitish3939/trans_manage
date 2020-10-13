@@ -24,7 +24,7 @@ class AuthController extends Controller {
      * @apiParam {String} user_type User type*. (Staff member => 2 ).
      * @apiParam {String} longitude cordinate location.
      * @apiParam {String} latitude cordinate location.
-     * 
+     *  @apiParam {String} fcm_token Token*.
      *
      * @apiSuccess {String} success true 
      * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
