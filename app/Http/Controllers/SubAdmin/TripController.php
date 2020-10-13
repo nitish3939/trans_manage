@@ -237,7 +237,7 @@ class TripController extends Controller {
 
     public function fuelViewTrip(Request $request, $id) {
         try {
-            $fuel = Fuel::where('trip_id',$id)->with(['vehicle','user'])->first();
+            $fuel = Fuel::find($id);
             if ($request->isMethod("post")) {
                     $fuel->user_id = $request->user_id;
                     $fuel->vehicle_id = $request->vehicle_id;
