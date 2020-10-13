@@ -54,5 +54,7 @@ Route::namespace("Api")->group(function () {
     //Spend Money
     Route::post('spend-money', 'VehicleController@spendMoney');
 
+    //Notification 
+    Route::post('user-trip', 'TripController@notificationList');
 
 });

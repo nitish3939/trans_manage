@@ -143,6 +143,9 @@ class AuthController extends Controller {
             if (!$request->user_type) {
                 return $this->sendErrorResponse("User type missing.", (object) []);
             }
+            if (!$request->fcm_token) {
+                return $this->sendErrorResponse("Token Fcm missing.", (object) []);
+            }
             if (!(in_array($request->user_type, [2]))) {
                 return $this->sendErrorResponse("User type invalid.", (object) []);
             }

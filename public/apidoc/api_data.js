@@ -244,6 +244,113 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/api/user-trip",
+    "title": "User Trip",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "description": "<p>application/json.</p>"
+          }
+        ]
+      }
+    },
+    "name": "PostUserTrip",
+    "group": "Notification",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>User Id*.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "success",
+            "description": "<p>true</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "status_code",
+            "description": "<p>(200 =&gt; success, 404 =&gt; Not found or failed).</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Notification List.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "JSON",
+            "optional": false,
+            "field": "data",
+            "description": "<p>response.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n {\n     \"status\": true,\n     \"status_code\": 200,\n     \"message\": \"Trip List\",\n     \"data\": {\n     \"upcoming\": {\n     \"id\": 149,\n     \"user_id\": 6,\n     \"vehicle_id\": 1,\n     \"trip_date\": \"2020-10-08\",\n     \"start_trip\": \"noida1\",\n     \"fuel_entry\": \"4325\",\n     \"end_trip\": \"patna\",\n     \"start_km\": \"5345\",\n     \"end_km\": \"32532\",\n     \"expense_amount\": 5325,\n     \"expense_description\": \"42353\",\n     \"amount_spend\": 5345,\n     \"end_fuel_entry\": \"534\",\n     \"is_read\": 0,\n     \"created_at\": \"2020-10-08 12:58:24\",\n     \"updated_at\": \"2020-10-08 12:58:24\"\n}, \"running\": {\n     \"id\": 149,\n     \"user_id\": 6,\n     \"vehicle_id\": 1,\n     \"trip_date\": \"2020-10-08\",\n     \"start_trip\": \"noida1\",\n     \"fuel_entry\": \"4325\",\n     \"end_trip\": \"patna\",\n     \"start_km\": \"5345\",\n     \"end_km\": \"32532\",\n     \"expense_amount\": 5325,\n     \"expense_description\": \"42353\",\n     \"amount_spend\": 5345,\n     \"end_fuel_entry\": \"534\",\n     \"is_read\": 0,\n     \"created_at\": \"2020-10-08 12:58:24\",\n     \"updated_at\": \"2020-10-08 12:58:24\"\n}\n     }\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>The user id is missing.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The User Not Found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n {\n    \"status\": false,\n    \"status_code\": 404,\n    \"message\": \"User id missing.\",\n    \"data\": {}\n }",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n {\n    \"status\": false,\n    \"status_code\": 404,\n    \"message\": \"User Not Found\",\n    \"data\": {}\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Api/TripController.php",
+    "groupTitle": "Notification"
+  },
+  {
+    "type": "post",
     "url": "/api/end-trip",
     "title": "End Trip",
     "header": {
