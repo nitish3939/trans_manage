@@ -157,7 +157,7 @@ class TripController extends Controller {
                         $us = User::find($request->user_id);
                         if ($us && $us->device_token) {
                         
-                            $this->androidPushNotification("Trip Assigned", "Demo", $us->device_token );
+                            $this->androidPushNotification("Trip Assigned", $request->start_trip.' To '.' $request->end_trip '."Demo", $us->device_token );
                         }
                         return redirect()->route('subadmin.trip.index')->with('status', 'Trip has been added successfully');
                     } else {
