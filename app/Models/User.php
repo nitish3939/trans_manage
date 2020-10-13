@@ -26,6 +26,7 @@ class User extends Authenticatable {
         'mobile_number',
         'otp',
         'password',
+        'device_token',
     ];
 
     public function getProfilePicPathAttribute($name) {

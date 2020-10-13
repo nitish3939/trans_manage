@@ -156,6 +156,9 @@ class AuthController extends Controller {
                 'password' => $request->password
             ];
             if (Auth::attempt($credentials)) {
+                $us = User::find($request->user()->id);
+                $us->device_token = $request->fcm_token;
+                $us->save();
                
             }else{
                 return $this->sendErrorResponse("Password or mobile number incorrect.", (object) []);
