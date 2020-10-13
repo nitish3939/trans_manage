@@ -248,9 +248,11 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
         Route::get('/', 'TripController@index')->name('subadmin.trip.index');
         Route::get('/trip-list', 'TripController@tripList')->name('subadmin.trip.list');
         Route::match(['get', 'post'], '/add-trip', 'TripController@addTrip')->name('subadmin.trip.add');
-        Route::match(['get', 'post'], '/fuel/{id}', 'TripController@fuelTrip')->name('subadmin.trip.fuel');
+        // Route::match(['get', 'post'], '/fuel/{id}', 'TripController@fuelTrip')->name('subadmin.trip.fuel');
         Route::match(['get', 'post'], '/edit/{id}', 'TripController@editTrip')->name('subadmin.trip.edit');
         Route::match(['get', 'post'], '/view/{id}', 'TripController@viewTrip')->name('subadmin.trip.view');
+        Route::match(['get', 'post'], '/fuel/{id}', 'TripController@fuelTrip')->name('subadmin.trip.fuel');
+        Route::match(['get', 'post'], '/fuelView/{id}', 'TripController@fuelViewTrip')->name('subadmin.trip.fuelView');
     });
 
       /**
