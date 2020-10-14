@@ -426,7 +426,7 @@ class VehicleController extends Controller {
             }else{
          
                 $trip->amount_spend = $trip->amount_spend + $request->expense_amount;
-                $trip->expense_description = $trip->expense_description .'+'. $request->expense_description;
+                $trip->expense_description = $trip->expense_description .','. $request->expense_description;
 
                 $trip->save();
            

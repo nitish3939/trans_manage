@@ -247,9 +247,9 @@ class TripController extends Controller {
                     $fuel->payment = $request->payment;
                     $fuel->meter_fuel = $request->meter_fuel;
                 if ($fuel->save()) {
-                    return redirect()->route('admin.trip.index')->with('status', 'Fuel has been updated successfully.');
+                    return redirect()->route('admin.trip.fuel',$fuel->trip_id)->with('status', 'Fuel has been updated successfully.');
                 } else {
-                    return redirect()->route('admin.trip.index', $id)->with('error', 'Something went be wrong.');
+                    return redirect()->route('admin.trip.fuel',$fuel->trip_id)->with('error', 'Something went be wrong.');
                 }
             }
             $css = [
@@ -269,7 +269,7 @@ class TripController extends Controller {
                     ]
             );
         } catch (\Exception $ex) {
-            return redirect()->route('admin.trip.index')->with('error', $ex->getMessage());
+            return redirect()->route('admin.trip.fuel',$fuel->trip_id)->with('error', $ex->getMessage());
         }
     }
     public function fuelTrip(Request $request, $id) {

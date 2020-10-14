@@ -46,8 +46,9 @@ class ChallanController extends Controller {
             $query = Challan::query();
             $query->with(['vehicle','user']);
             if ($searchKeyword) {
-                $query->where(function($query) use($searchKeyword) {
-                    $query->where("challan_no", "LIKE", "%$searchKeyword%");
+                $query->whereHas("user", function($query) use($searchKeyword) {
+                    $query->where("first_name", "LIKE", "%$searchKeyword%")
+                            ->orWhere("mobile_number", "LIKE", "%$searchKeyword%");
                 });
             }
 

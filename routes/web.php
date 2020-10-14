@@ -133,8 +133,8 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::match(['get', 'post'], '/add-staff', 'StaffController@addUser')->name('admin.staff.add');
         Route::get('/staff-detail/{id}', 'StaffController@viewUser')->name('admin.staff.detail');
         Route::match(['get', 'post'], '/edit/{id}', 'StaffController@editUser')->name('admin.staff.edit');
-        // Route::post('/amenity-list', 'StaffController@getAmenities')->name('admin.staff.amenity-list');
         Route::post('/staff-duty-status', 'StaffController@updateUserDutyStatus')->name('admin.staff.duty-status');
+        Route::match(['get', 'post'], '/change-password/{id}', 'StaffController@changePassword')->name('admin.staff.change-password');
     });
     /**
      * Sub-Admin Management
@@ -191,21 +191,7 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
     Route::match(['get', 'post'], '/user/add-user', 'UsersController@addUser')->name('subadmin.users.add');
     Route::get('/user/detail/{id}', 'UsersController@viewUser')->name('subadmin.users.detail');
     Route::match(['get', 'post'], '/user/edit/{id}', 'UsersController@editUser')->name('subadmin.users.edit');
-    // Route::get('payments/{user}', 'UsersController@viewPayments')->name('subadmin.users.payments');
-    // Route::post('pay-outstanding', 'UsersController@payOutstading')->name('subadmin.users.pay_outstanding');
-    // Route::get('user-booking/{id}', 'UsersController@booking')->name('subadmin.users.booking');
-    // Route::get('user-booking-list/{id}', 'UsersController@bookingList')->name('subadmin.users.booking-list');
-    // Route::match(['get', 'post'], 'user-booking-create/{id}', 'UsersController@bookingCreate')->name('subadmin.users.booking-create');
-    // Route::match(['get', 'post'], 'user-booking-edit/{id}', 'UsersController@bookingEdit')->name('subadmin.users.booking-edit');
-    // Route::match(['get', 'post'], 'user-booking-verify/{id}', 'UsersController@verifyBooking')->name('subadmin.users.booking-verify');
-    // Route::get('user-detail/{mobile_number}', 'UsersController@getUserDetail')->name('subadmin.users.booking-detail');
-    // Route::match(['get', 'post'], 'user-early-checkout/{id}', 'UsersController@earlyCheckout')->name('subadmin.users.early-checkout');
-    // Route::match(['get', 'post'], '/user/user-order/{id}', 'UsersController@userOrder')->name('subadmin.users.user-order');
-    // Route::post('/user/user-meal-item', 'UsersController@userMealItem')->name('subadmin.users.user-meal-item');
-    // Route::post('/user/user-meal-package', 'UsersController@userMealPackage')->name('subadmin.users.user-meal-package');
-    // Route::post('/user/user-order-create', 'UsersController@userOrderCreate')->name('subadmin.users.user-order-create');
-    // Route::get('payments-invoice/{user}', 'UsersController@generateInvoice')->name('subadmin.users.invoice');
-    // Route::get('booking-invoice/{booking_id}', 'UsersController@generateBookingInvoice')->name('subadmin.users.booking-invoice');
+
 
     /**
      * Staff Management
@@ -217,8 +203,8 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
         Route::match(['get', 'post'], '/add-staff', 'StaffController@addUser')->name('subadmin.staff.add');
         Route::get('/staff-detail/{id}', 'StaffController@viewUser')->name('subadmin.staff.detail');
         Route::match(['get', 'post'], '/edit/{id}', 'StaffController@editUser')->name('subadmin.staff.edit');
-        // Route::post('/amenity-list', 'StaffController@getAmenities')->name('subadmin.staff.amenity-list');
-        Route::post('/staff-duty-status', 'StaffController@updateUserDutyStatus')->name('admin.staff.duty-status');
+        Route::post('/staff-duty-status', 'StaffController@updateUserDutyStatus')->name('subadmin.staff.duty-status');
+        Route::match(['get', 'post'], '/change-password/{id}', 'StaffController@changePassword')->name('subadmin.staff.change-password');
     });
 
            /**

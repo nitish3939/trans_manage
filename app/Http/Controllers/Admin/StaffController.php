@@ -70,7 +70,8 @@ class StaffController extends Controller {
                 $usersArray[$i]['mobileno'] = $user->mobile_number;
                 $checked_status = $user->is_active ? "checked" : '';
                 $usersArray[$i]['status'] = "<label class='switch'><input  type='checkbox' class='user_status' id=" . $user->id . " data-status=" . $user->is_active . " " . $checked_status . "><span class='slider round'></span></label>";
-                $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.staff.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
+                $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.staff.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>'
+                . '<a class="btn btn-primary btn-xs" href="' . route('admin.staff.change-password', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Change Password</a>';
                 $i++;
             }
 
@@ -252,5 +253,22 @@ class StaffController extends Controller {
             return redirect()->route('admin.users.index')->with('error', $ex->getMessage());
         }
     }
+
+    public function changePassword(Request $request, $id) {
+        $user = User::find($id);
+        if ($request->isMethod("post")) {
+            
+
+      
+                $user->password = $request->get("new_password");
+                $user->save();
+                return redirect()->route('admin.staff.index')->with('status', 'Password has been updated successfully.');
+            
+        }
+        return view('admin.staff.change-password', [
+            "user" => $user,
+        ]);
+    }
+
 
 }

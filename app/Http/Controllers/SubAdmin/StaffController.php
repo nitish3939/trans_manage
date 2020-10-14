@@ -253,4 +253,20 @@ class StaffController extends Controller {
         }
     }
 
+    public function changePassword(Request $request, $id) {
+        $user = User::find($id);
+        if ($request->isMethod("post")) {
+            
+
+      
+                $user->password = $request->get("new_password");
+                $user->save();
+                return redirect()->route('subadmin.staff.index')->with('status', 'Password has been updated successfully.');
+            
+        }
+        return view('subadmin.staff.change-password', [
+            "user" => $user,
+        ]);
+    }
+
 }
