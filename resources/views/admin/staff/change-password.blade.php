@@ -51,8 +51,7 @@
         $("#profileForm").validate({
             rules: {
                 new_password: {
-                    required: true,
-                    alphanumeric: true
+                    required: true
                 },
                 confirm_password: {
                     required: true,
