@@ -48,10 +48,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'operator' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
