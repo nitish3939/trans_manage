@@ -8,11 +8,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable {
 
     use HasApiTokens,
-        Notifiable;
+        Notifiable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

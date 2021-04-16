@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="#" class="site_title"><i class="fa fa-truck"></i> <span>Bajrang</span></a>
+                 <img src="{{ asset("img/app-Icon.png") }}" class="center" width="100px">
         </div>
 
         <div class="clearfix"></div>

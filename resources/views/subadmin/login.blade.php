@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <input class="btn btn-success submit" type="submit" value="Log in">
-                <a class="reset_pass" href="#signup">Lost your password?</a>
+             
             </div>
 
             <div class="clearfix"></div>

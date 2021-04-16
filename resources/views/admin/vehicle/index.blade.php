@@ -61,7 +61,38 @@
                 {"data": "view-deatil", sortable: false},
             ]
         });
-
+  $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+     $(document).on("click", ".delete", function () {
+            var record_id = this.id;
+            bootbox.confirm("Are you sure want to delete this vehicle?", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: _baseUrl + '/admin/vehicle/delete',
+                        type: 'post',
+                        data: {id: record_id},
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $(".overlay").show();
+                        },
+                        success: function (res) {
+                            if (res.status)
+                            {
+                                t.draw();
+                                $(".overlay").hide();
+                                showSuccessMessage(res.message);
+                            } else {
+                                $(".overlay").hide();
+                                showErrorMessage(res.message);
+                            }
+                        }
+                    });
+                }
+            });
+        });
 
     });
 </script>

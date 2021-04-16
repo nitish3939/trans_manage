@@ -137,6 +137,34 @@
             });
 
         });
+
+            $(document).on("click", ".delete", function () {
+            var record_id = this.id;
+            bootbox.confirm("Are you sure want to delete this staff?", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: _baseUrl + '/admin/staff/delete',
+                        type: 'post',
+                        data: {id: record_id},
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $(".overlay").show();
+                        },
+                        success: function (res) {
+                            if (res.status)
+                            {
+                                t.draw();
+                                $(".overlay").hide();
+                                showSuccessMessage(res.message);
+                            } else {
+                                $(".overlay").hide();
+                                showErrorMessage(res.message);
+                            }
+                        }
+                    });
+                }
+            });
+        });
     });
 </script>
 @endsection

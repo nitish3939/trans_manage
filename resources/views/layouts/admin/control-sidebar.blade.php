@@ -29,12 +29,50 @@
 ><a href="{{ route('admin.subadmin.index') }}">Sub Admin</a></li>
 </ul>
 </li>
+
+
+
+
 <li  @if(in_array(Route::currentRouteName(), ['admin.client.index']))
 {{ "class=current-page" }}
 @endif
 >
 <a href="{{ route('admin.client.index') }}"><i class="fa fa-user"></i>Client Management</a>
 </li>
+
+
+<li @if(in_array(Route::currentRouteName(), ['admin.balance.edit', 'admin.balance.add', 'admin.balance.index','admin.trading.edit', 'admin.trading.add', 'admin.trading.index','admin.profit.edit', 'admin.profit.add', 'admin.profit.index','admin.payment.edit', 'admin.payment.add', 'admin.payment.index','admin.income.edit', 'admin.income.add', 'admin.income.index']))
+{{ "class=active" }}
+@endif>
+<a><i class="fa fa-users"></i> Account Management <span class="fa fa-chevron-down"></span></a>
+<ul class="nav child_menu"
+@if(in_array(Route::currentRouteName(), ['admin.balance.edit', 'admin.balance.add', 'admin.balance.index','admin.trading.edit', 'admin.trading.add', 'admin.trading.index','admin.profit.edit', 'admin.profit.add', 'admin.profit.index','admin.payment.edit', 'admin.payment.add', 'admin.payment.index','admin.income.edit', 'admin.income.add', 'admin.income.index']))
+{{ "style=display:block;" }}
+@endif
+>
+<li @if(in_array(Route::currentRouteName(), ['admin.balance.edit', 'admin.balance.add','admin.balance.index']))
+{{ "class=current-page" }}
+@endif
+><a href="{{ route('admin.balance.index') }}">Balance Sheet</a></li>
+<li @if(in_array(Route::currentRouteName(), ['admin.trading.edit', 'admin.trading.add', 'admin.trading.index']))
+{{ "class=current-page" }}
+@endif
+><a href="{{ route('admin.trading.index') }}">Trading Account</a></li>
+<li @if(in_array(Route::currentRouteName(), ['admin.profit.edit', 'admin.profit.add','admin.profit.index']))
+{{ "class=current-page" }}
+@endif
+><a href="{{ route('admin.profit.index') }}">Profit & Loss Account</a></li>
+<li @if(in_array(Route::currentRouteName(), ['admin.payment.edit', 'admin.payment.add','admin.payment.index']))
+{{ "class=current-page" }}
+@endif
+><a href="{{ route('admin.payment.index') }}">Payment & Recept A/C</a></li>
+<li @if(in_array(Route::currentRouteName(), ['admin.income.edit', 'admin.income.add','admin.income.index']))
+{{ "class=current-page" }}
+@endif
+><a href="{{ route('admin.income.index') }}">Income & Expense Account</a></li>
+</ul>
+</li>
+
 <li  @if(in_array(Route::currentRouteName(), ['admin.vehicle.index']))
 {{ "class=current-page" }}
 @endif

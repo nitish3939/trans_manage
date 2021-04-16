@@ -165,7 +165,7 @@
                     Phone No. 0120-4326356 / +91 8268236513 / +91 9999423911 / +91 9354616779
                 </p>
             </div>
-            <h1>BILLTY</h1>
+            <h1>BILTY</h1>
             <div id="company" class="clearfix">
                 <div><span>GR No.</span> {{ $data->gr_no }}</div>
                 <div><span>Date</span> {{ $data->trip->trip_date }}</div>

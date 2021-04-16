@@ -67,6 +67,12 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Bill preview</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                         <a href="{{$vehicle->bill_image }}" target="_blank"><img style="width: 100px; height: 100px;" src="{{ $vehicle->bill_image }}" ></a>
+                          @if($vehicle->bill_image1)
+                         <a href="{{$vehicle->bill_image1 }}" target="_blank"><img style="width: 100px; height: 100px;" src="{{ $vehicle->bill_image1 }}" ></a>@endif
+                              @if($vehicle->bill_image2)
+                          <a href="{{$vehicle->bill_image2 }}" target="_blank"><img style="width: 100px; height: 100px;" src="{{ $vehicle->bill_image2 }}" ></a>@endif
+                               @if($vehicle->bill_image3)
+                           <a href="{{$vehicle->bill_image3 }}" target="_blank"><img style="width: 100px; height: 100px;" src="{{ $vehicle->bill_image3 }}" ></a>@endif
                         </div>
                     </div>
                     <table id="list" class="table table-striped table-bordered text-center">

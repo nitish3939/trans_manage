@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Trip extends Model
 {
     public function vehicle() {
-        return $this->belongsTo('App\Models\Vehicle', 'vehicle_id');
+        return $this->belongsTo('App\Models\Vehicle', 'vehicle_id')->withTrashed();
     }
     public function user() {
-        return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id')->withTrashed();
     }
 
 }

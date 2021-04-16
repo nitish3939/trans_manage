@@ -74,6 +74,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::match(['get', 'post'], '/edit/{id}', 'VehicleController@editVehicle')->name('admin.vehicle.edit');
         Route::match(['get', 'post'], '/issue/{id}', 'VehicleController@issueVehicle')->name('admin.vehicle.issue');
         Route::match(['get', 'post'], '/issueView/{id}', 'VehicleController@issueViewVehicle')->name('admin.vehicle.issueView');
+        Route::post('/delete', 'VehicleController@deleteVehicle')->name('admin.vehicle.delete');
     });
 
     /**
@@ -87,6 +88,56 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
     });
 
     /**
+     * Balance Sheet
+     */
+    Route::prefix('balance')->group(function() {
+        Route::get('/', 'BalanceController@index')->name('admin.balance.index');
+        Route::get('/balance-list', 'BalanceController@balanceList')->name('admin.balance.list');
+        Route::match(['get', 'post'], '/add-balance', 'BalanceController@addBalance')->name('admin.balance.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'BalanceController@editBalance')->name('admin.balance.edit');
+    });
+
+    /**
+     * Trading Sheet
+     */
+    Route::prefix('trading')->group(function() {
+        Route::get('/', 'TradingController@index')->name('admin.trading.index');
+        Route::get('/trading-list', 'TradingController@tradingList')->name('admin.trading.list');
+        Route::match(['get', 'post'], '/add-trading', 'TradingController@addTrading')->name('admin.trading.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'TradingController@editTrading')->name('admin.trading.edit');
+    });
+
+    /**
+     * Profit Sheet
+     */
+    Route::prefix('profit')->group(function() {
+        Route::get('/', 'ProfitController@index')->name('admin.profit.index');
+        Route::get('/profit-list', 'ProfitController@profitList')->name('admin.profit.list');
+        Route::match(['get', 'post'], '/add-profit', 'ProfitController@addProfit')->name('admin.profit.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'ProfitController@editProfit')->name('admin.profit.edit');
+    });
+
+    /**
+     * Payment Sheet
+     */
+    Route::prefix('payment')->group(function() {
+        Route::get('/', 'PaymentController@index')->name('admin.payment.index');
+        Route::get('/payment-list', 'PaymentController@paymentList')->name('admin.payment.list');
+        Route::match(['get', 'post'], '/add-payment', 'PaymentController@addPayment')->name('admin.payment.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'PaymentController@editPayment')->name('admin.payment.edit');
+    });
+
+    /**
+     * Income Sheet
+     */
+    Route::prefix('income')->group(function() {
+        Route::get('/', 'IncomeController@index')->name('admin.income.index');
+        Route::get('/income-list', 'IncomeController@incomeList')->name('admin.income.list');
+        Route::match(['get', 'post'], '/add-income', 'IncomeController@addIncome')->name('admin.income.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'IncomeController@editIncome')->name('admin.income.edit');
+    });
+
+    /**
      * Client Management
      */
     Route::prefix('client')->group(function() {
@@ -95,7 +146,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::match(['get', 'post'], '/add-client', 'ClientController@addClient')->name('admin.client.add');
         Route::match(['get', 'post'], '/edit/{id}', 'ClientController@editClient')->name('admin.client.edit');
     });
-
+ 
    /**
      * Trip Management
      */
@@ -135,7 +186,9 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         Route::match(['get', 'post'], '/edit/{id}', 'StaffController@editUser')->name('admin.staff.edit');
         Route::post('/staff-duty-status', 'StaffController@updateUserDutyStatus')->name('admin.staff.duty-status');
         Route::match(['get', 'post'], '/change-password/{id}', 'StaffController@changePassword')->name('admin.staff.change-password');
+        Route::post('/delete', 'StaffController@deleteUser')->name('admin.staff.delete');
     });
+
     /**
      * Sub-Admin Management
      */
@@ -149,6 +202,7 @@ Route::namespace("Admin")->prefix('admin')->middleware(['adminGuest'])->group(fu
         // Route::post('/amenity-list', 'SubadminController@getAmenities')->name('admin.subadmin.amenity-list');
         Route::match(['get', 'post'], '/change-password/{id}', 'SubadminController@changePassword')->name('admin.subadmin.change-password');
     });
+    
     /**
      * Notification Management
      */
@@ -180,7 +234,55 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
      */
     Route::get('/dashboard', 'DashboardController@index')->name('subadmin.dashboard');
     // Route::post('/inventory-detail', 'DashboardController@inventoryDetail')->name('subadmin.dashboard.inventory');
+    
+    /**
+     * Balance Sheet
+     */
+    Route::prefix('balance')->group(function() {
+        Route::get('/', 'BalanceController@index')->name('subadmin.balance.index');
+        Route::get('/balance-list', 'BalanceController@balanceList')->name('subadmin.balance.list');
+        Route::match(['get', 'post'], '/add-balance', 'BalanceController@addBalance')->name('subadmin.balance.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'BalanceController@editBalance')->name('subadmin.balance.edit');
+    });
+  /**
+     * Trading Sheet
+     */
+    Route::prefix('trading')->group(function() {
+        Route::get('/', 'TradingController@index')->name('subadmin.trading.index');
+        Route::get('/trading-list', 'TradingController@tradingList')->name('subadmin.trading.list');
+        Route::match(['get', 'post'], '/add-trading', 'TradingController@addTrading')->name('subadmin.trading.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'TradingController@editTrading')->name('subadmin.trading.edit');
+    });
 
+    /**
+     * Profit Sheet
+     */
+    Route::prefix('profit')->group(function() {
+        Route::get('/', 'ProfitController@index')->name('subadmin.profit.index');
+        Route::get('/profit-list', 'ProfitController@profitList')->name('subadmin.profit.list');
+        Route::match(['get', 'post'], '/add-profit', 'ProfitController@addProfit')->name('subadmin.profit.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'ProfitController@editProfit')->name('subadmin.profit.edit');
+    });
+
+    /**
+     * Payment Sheet
+     */
+    Route::prefix('payment')->group(function() {
+        Route::get('/', 'PaymentController@index')->name('subadmin.payment.index');
+        Route::get('/payment-list', 'PaymentController@paymentList')->name('subadmin.payment.list');
+        Route::match(['get', 'post'], '/add-payment', 'PaymentController@addPayment')->name('subadmin.payment.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'PaymentController@editPayment')->name('subadmin.payment.edit');
+    });
+
+    /**
+     * Income Sheet
+     */
+    Route::prefix('income')->group(function() {
+        Route::get('/', 'IncomeController@index')->name('subadmin.income.index');
+        Route::get('/income-list', 'IncomeController@incomeList')->name('subadmin.income.list');
+        Route::match(['get', 'post'], '/add-income', 'IncomeController@addIncome')->name('subadmin.income.add');
+        Route::match(['get', 'post'], '/edit/{id}', 'IncomeController@editIncome')->name('subadmin.income.edit');
+    });
 
     /**
      * Users Management
@@ -272,5 +374,3 @@ Route::namespace("SubAdmin")->prefix('sub-admin')->middleware(['subadminGuest'])
         Route::get('/notifications-list', 'NotificationController@listNotification')->name('subadmin.notification.list');
     });
 });
-
-

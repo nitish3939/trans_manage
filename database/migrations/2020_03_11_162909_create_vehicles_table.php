@@ -43,6 +43,7 @@ class CreateVehiclesTable extends Migration
             $table->date('five_start_date')->nullable();
             $table->date('five_end_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

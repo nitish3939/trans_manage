@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="#" class="site_title"><i class="fa fa-truck"></i> <span>Bajrang</span></a>
+                  <img src="{{ asset("img/app-Icon.png") }}" class="center" width="100px">
         </div>
 
         <div class="clearfix"></div>
@@ -9,7 +9,7 @@
         <!-- menu profile quick info -->
         <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="{{ auth('subadmin')->user()->profile_pic_path }}" alt="..." class="img-circle profile_img">
+                <img src="{{ auth('subadmin')->user()->profile_pic_path }}"  class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>

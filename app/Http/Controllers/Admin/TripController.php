@@ -93,6 +93,13 @@ class TripController extends Controller {
                     }else{
                         $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
                     }
+                 }elseif($user->is_read == 3){
+                    $usersArray[$i]['status'] = '<a class="btn btn-warning btn-xs">Completed</a>';
+                    if($ob){
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.view', ['id' => $user->id]) . '"><i class="fa fa-eye"></i>View</a><a class="btn btn-info btn-xs" href="' . route('admin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';
+                    }else{
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.trip.view', ['id' => $user->id]) . '"><i class="fa fa-eye"></i>View</a>';
+                    }
                  }
                       
                  $i++;
@@ -224,7 +231,7 @@ class TripController extends Controller {
                 'vendors/iCheck/icheck.min.js',
             ];
             $vehicle = Vehicle::all();
-            $driver = User::where('user_type_id', 2)->where('is_active',1)->get();
+            $driver = User::where('user_type_id', 2)->where('is_active',1)->withTrashed()->get();
             return view('admin.trip.edit', [
                 'css' => $css,
                 'js' => $js,
@@ -307,7 +314,7 @@ class TripController extends Controller {
                 'vendors/iCheck/icheck.min.js',
             ];
             $vehicle = Vehicle::all();
-            $driver = User::where('user_type_id', 2)->get();
+            $driver = User::where('user_type_id', 2)->withTrashed()->get();
             return view('admin.trip.fuel', [
                 'css' => $css,
                 'js' => $js,

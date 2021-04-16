@@ -32,6 +32,161 @@
         <script type="text/javascript">
             var _baseUrl = "{{ URL::to('/') }}";
         </script>
+         <style>
+            body {
+                color: #353535;
+                font-size: 14px;
+            }
+
+            .left_col {
+                background: #22295a;
+            }
+            .form-control {
+                height: 50px;
+                padding: 8px 10px;
+            }
+            
+            .registration_form, .login_form {
+                top: 120px;
+            }
+            .nav_title {
+                background: #22295a;
+            }
+
+            .sidebar-footer {
+                background: #22295a;
+            }
+            .sidebar-footer a {
+                background: #ffffff;
+                border-radius: 0px 29px 29px 0px;
+            }
+            .nav.side-menu>li>a, .nav.child_menu>li>a {
+                color: #ffffff;
+                font-weight: 400;
+            }
+            <style>
+            .nav.side-menu>li>a {
+                margin-bottom: 9px;
+            }
+
+            .nav.side-menu>li.current-page, .nav.side-menu>li.active {
+                border-right: 5px solid #6ed5eb;
+            }
+
+            .nav.side-menu>li.active>a {
+                text-shadow: rgb(0 0 0 / 25%) 0 -1px 0;
+                background: linear-gradient(#334556, #6ed5eb), #2A3F54;
+            }
+
+            .nav-sm .nav.child_menu li.active, .nav-sm .nav.side-menu li.active-sm {
+                border-right: 5px solid #6ed5eb;
+            }
+
+            .profile_info {
+                padding: 17px 14px 15px;
+                width: 65%;
+                float: left;
+            }
+
+            .img-circle.profile_img {
+                width: 84%;
+                margin-top: 29px;
+            }
+
+            .profile_pic {
+                width: 20%;
+                float: left;
+            }
+
+            .btn-success {
+                background: #6D9E77;
+                border: 1px solid #6D9E77;
+            }
+
+            .btn-info {
+                color: #fff;
+                background-color: #31b0d5;
+                border-color: #31b0d5;
+            }
+
+            .btn-danger.active.focus, .btn-danger.active:focus, .btn-danger.active:hover, .btn-danger:active.focus, .btn-danger:active:focus, .btn-danger:active:hover, .open>.dropdown-toggle.btn-danger.focus, .open>.dropdown-toggle.btn-danger:focus, .open>.dropdown-toggle.btn-danger:hover {
+                color: #fff;
+                background-color: #D66A3F;
+                border-color: #D66A3F;
+            }
+
+            div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+                margin: 12px 0;
+                white-space: nowrap;
+            }
+
+            .login {
+                background: #293273;
+            }
+            .form-control {
+    height: 50px;
+    padding: 8px 10px;
+}
+
+.registration_form, .login_form {
+    top: 120px;
+}
+
+.login_wrapper {
+    max-width: 470px;
+}
+
+.animate.form.login_form {
+    background: #f9f9f9;
+    padding: 16px 32px;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.login_content form input[type="submit"], #content form .submit {
+    float: left;
+    padding: 9px 47px;
+}
+.tile-stats {
+    border: none;
+    overflow: hidden;
+    padding-bottom: 5px;
+    border-radius: 3px;
+    background: #384773;
+    color: #fff;
+    padding: 18px 20px 40px 9px;
+}
+
+.left_col {
+    background: #384773;
+}
+
+.nav_title {
+    background: #384773;
+}
+
+.sidebar-footer {
+    background: #384773;
+}
+
+.tile-stats:hover .icon i {
+    color: rgb(255 255 255 / 41%);
+}
+
+.tile-stats h3 {
+    color: #ffffff;
+    font-weight: 400;
+}
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+        </style>
     </head>
 
     <body class="nav-md">

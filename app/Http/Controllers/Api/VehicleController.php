@@ -25,7 +25,10 @@ class VehicleController extends Controller {
      *
      * @apiParam {String} user_id User Id*.
      * @apiParam {String} vehicle_id Vehicle Id*.
-     * @apiParam {String} issue_pic Issue Image*.
+     * @apiParam {String} issue_pic Issue Image1*.
+     * @apiParam {String} issue_pic1 Issue Image2*.
+     * @apiParam {String} issue_pic2 Issue Image3*.
+     * @apiParam {String} issue_pic3 Issue Image4*.
      *
      * @apiSuccess {String} success true 
      * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
@@ -91,14 +94,45 @@ class VehicleController extends Controller {
             }
            
             if ($request->issue_pic) {
+              
                 if (!$request->hasFile("issue_pic")) {
                     return $this->sendErrorResponse("Issue pic not valid file type.");
                 }
+                  $vehicle = new VehicleIssue();
                 $issue_pic = $request->file("issue_pic");
                 $issue = Storage::disk('public')->put('issue_pic', $issue_pic);
                 $issue_file_name = basename($issue);
-
-                $vehicle = new VehicleIssue();
+           //2     
+            if ($request->issue_pic1) {
+                 if (!$request->hasFile("issue_pic1")) {
+                    return $this->sendErrorResponse("Issue pic1 not valid file type.");
+                }
+                $issue_pic1 = $request->file("issue_pic1");
+                $issue1 = Storage::disk('public')->put('issue_pic', $issue_pic1);
+                $issue_file_name1 = basename($issue1);
+                    $vehicle->bill_image1 = $issue_file_name1;
+            }
+//3
+                 if ($request->issue_pic2) {
+                if (!$request->hasFile("issue_pic2")) {
+                    return $this->sendErrorResponse("Issue pic2 not valid file type.");
+                }
+                $issue_pic2 = $request->file("issue_pic2");
+                $issue2 = Storage::disk('public')->put('issue_pic', $issue_pic2);
+                $issue_file_name2 = basename($issue2);
+                $vehicle->bill_image2 = $issue_file_name2;
+                 }
+        //4   
+          if ($request->issue_pic3) {
+         if (!$request->hasFile("issue_pic3")) {
+                    return $this->sendErrorResponse("Issue pic3 not valid file type.");
+                }
+                $issue_pic3 = $request->file("issue_pic3");
+                $issue3 = Storage::disk('public')->put('issue_pic', $issue_pic3);
+                $issue_file_name3 = basename($issue3);  
+                 $vehicle->bill_image3 = $issue_file_name3;
+          }
+                
                 $vehicle->user_id = $request->user_id;
                 $vehicle->vehicle_id = $request->vehicle_id;
                 $vehicle->bill_image = $issue_file_name;
@@ -125,7 +159,8 @@ class VehicleController extends Controller {
      * @apiParam {String} amount Amount*.
      * @apiParam {String} location Location*.
      * @apiParam {String} meter_fuel Meter Fuel*.
-     * @apiParam {String} fuel_pic Bill Image*.
+     * @apiParam {String} fuel_pic Bill Image1*.
+     * @apiParam {String} fuel_pic1 Bill Image2*.
      *
      * @apiSuccess {String} success true 
      * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
@@ -186,9 +221,9 @@ class VehicleController extends Controller {
             if (!$request->trip_id) {
                 return $this->sendErrorResponse("Trip Id missing.", (object) []);
             }
-            if (!$request->meter_fuel) {
-                return $this->sendErrorResponse("Meter Fuel missing.", (object) []);
-            }
+            // if (!$request->meter_fuel) {
+            //     return $this->sendErrorResponse("Meter Fuel missing.", (object) []);
+            // }
             if (!$request->amount) {
                 return $this->sendErrorResponse("Fuel Amount missing.", (object) []);
             }
@@ -209,18 +244,31 @@ class VehicleController extends Controller {
                 if (!$request->hasFile("fuel_pic")) {
                     return $this->sendErrorResponse("fuel pic not valid file type.");
                 }
+                $vehicle = new Fuel();
                 $fuel_pic = $request->file("fuel_pic");
                 $fuel = Storage::disk('public')->put('fuel_pic', $fuel_pic);
                 $fuel_file_name = basename($fuel);
-
-                $vehicle = new Fuel();
+                
+                  if ($request->fuel_pic1) {
+                 if (!$request->hasFile("fuel_pic1")) {
+                    return $this->sendErrorResponse("fuel pic1 not valid file type.");
+                }
+                $fuel_pic1 = $request->file("fuel_pic1");
+                $fuel1 = Storage::disk('public')->put('fuel_pic', $fuel_pic1);
+                $fuel_file_name1 = basename($fuel1);
+                  $vehicle->fuel_bill_image1 = $fuel_file_name1;
+                }
+                
                 $vehicle->trip_id = $request->trip_id;
                 $vehicle->user_id = $request->user_id;
                 $vehicle->vehicle_id = $request->vehicle_id;
-                $vehicle->meter_fuel = $request->meter_fuel;
+                if ($request->meter_fuel) {
+                    $vehicle->meter_fuel = $request->meter_fuel;
+                }
                 $vehicle->payment = $request->amount;
                 $vehicle->location = $request->location;
                 $vehicle->fuel_bill_image = $fuel_file_name;
+               
                 $vehicle->save();
             }
 
@@ -243,7 +291,8 @@ class VehicleController extends Controller {
      * @apiParam {String} latitude challan place latitude*.
      * @apiParam {String} challan_place challan place*.
      * @apiParam {String} amount Challan Amount*.
-     * @apiParam {String} challan_pic Challan Image*.
+     * @apiParam {String} challan_pic Challan Image1*.
+     * @apiParam {String} challan_pic1 Challan Image2*.
      *
      * @apiSuccess {String} success true 
      * @apiSuccess {String} status_code (200 => success, 404 => Not found or failed). 
@@ -323,11 +372,22 @@ class VehicleController extends Controller {
                 if (!$request->hasFile("challan_pic")) {
                     return $this->sendErrorResponse("challan pic not valid file type.");
                 }
+                 $vehicle = new Challan();
                 $challan_pic = $request->file("challan_pic");
                 $challan = Storage::disk('public')->put('challan_pic', $challan_pic);
                 $challan_file_name = basename($challan);
-
-                $vehicle = new Challan();
+                
+                
+                 if ($request->challan_pic1) {
+                 if (!$request->hasFile("challan_pic1")) {
+                    return $this->sendErrorResponse("challan pic1 not valid file type.");
+                }
+                $challan_pic1 = $request->file("challan_pic1");
+                $challan1 = Storage::disk('public')->put('challan_pic', $challan_pic1);
+                $challan_file_name1 = basename($challan1);
+                $vehicle->challan_pic1 = $challan_file_name1;
+                }
+               
                 $vehicle->user_id = $request->user_id;
                 $vehicle->vehicle_id = $request->vehicle_id;
                 $vehicle->challan_place = $request->challan_place;
@@ -335,6 +395,7 @@ class VehicleController extends Controller {
                 $vehicle->longitude = $request->longitude;
                 $vehicle->latitude = $request->latitude;
                 $vehicle->challan_pic = $challan_file_name;
+                
                 $vehicle->save();
             }
 
@@ -426,7 +487,12 @@ class VehicleController extends Controller {
             }else{
          
                 $trip->amount_spend = $trip->amount_spend + $request->expense_amount;
-                $trip->expense_description = $trip->expense_description .','. $request->expense_description;
+                if($trip->expense_description){
+                    $trip->expense_description = $trip->expense_description .','. $request->expense_description;
+                }else{
+                    $trip->expense_description = $request->expense_description;
+                }
+                
 
                 $trip->save();
            

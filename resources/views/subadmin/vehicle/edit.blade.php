@@ -35,19 +35,19 @@
                 </div>
                 <div class="ln_solid"></div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance No.*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance No.</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="text" value="{{ $vehicle->insurance_no }}" class="form-control" placeholder="Insurance No." name="insurance_no" id="insurance_no">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Start Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance Start Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->insu_start_date }}" class="form-control" name="insu_start_date" id="insu_start_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance End Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Insurance End Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->insu_end_date }}" class="form-control" name="insu_end_date" id="insu_end_date">
                     </div>
@@ -71,109 +71,109 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Medical certificate No.*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Medical certificate No.</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="text" value="{{ $vehicle->medical_cert_no }}" class="form-control" placeholder="Medical certificate No." name="medical_cert_no" id="medical_cert_no">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Medical Start Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Medical Start Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->medi_start_date }}" class="form-control" name="medi_start_date" id="medi_start_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Medical End Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Medical End Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->medi_end_date }}" class="form-control" name="medi_end_date" id="medi_end_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fitness No.*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fitness No.</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="text" value="{{ $vehicle->fitness_no }}" class="form-control" placeholder="Fitness No." name="fitness_no" id="fitness_no">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fitness Start Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fitness Start Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->fit_start_date }}" class="form-control" name="fit_start_date" id="fit_start_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fitness End Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Fitness End Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->fit_end_date }}" class="form-control" name="fit_end_date" id="fit_end_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Permite No.*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Permite No.</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="text" value="{{ $vehicle->permite_no }}" class="form-control" placeholder="Permite No." name="permite_no" id="permite_no">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Permite Start Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Permite Start Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->perm_start_date }}" class="form-control" name="perm_start_date" id="perm_start_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Permite End Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Permite End Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->perm_end_date }}" class="form-control" name="perm_end_date" id="perm_end_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Permit No.*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Permit No.</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="text" value="{{ $vehicle->tax_permit_no }}" class="form-control" placeholder="Tax Permit No." name="tax_permit_no" id="tax_permit_no">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Permit Start Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Permit Start Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->tax_start_date }}" class="form-control" name="tax_start_date" id="tax_start_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Permit End Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tax Permit End Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->tax_end_date }}" class="form-control" name="tax_end_date" id="tax_end_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">NP Permit No.*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">NP Permit No.</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="text" value="{{ $vehicle->np_permit_no }}" class="form-control" placeholder="NP Permit No." name="np_permit_no" id="np_permit_no">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">NP Permit Start Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">NP Permit Start Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->np_start_date }}" class="form-control" name="np_start_date" id="np_start_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">NP Permit End Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">NP Permit End Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->np_end_date }}" class="form-control" name="np_end_date" id="np_end_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">5 Year No.*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">5 Year No.</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="text" value="{{ $vehicle->five_year_no }}" class="form-control" placeholder="5 Year No." name="five_year_no" id="five_year_no">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">5 Year Start Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">5 Year Start Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->five_start_date }}" class="form-control" name="five_start_date" id="five_start_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">5 Year End Date*</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">5 Year End Date</label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <input type="date" value="{{ $vehicle->five_end_date }}" class="form-control" name="five_end_date" id="five_end_date">
                     </div>

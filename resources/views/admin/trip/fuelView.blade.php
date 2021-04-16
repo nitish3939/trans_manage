@@ -48,6 +48,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Fuel Bill Image preview</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                         <a href="{{$fuel->fuel_bill_image }}" target="_blank"><img class="img-rounded" style="width: 100px; height: 100px;" src="{{ $fuel->fuel_bill_image }}" ></a>
+                        @if($fuel->fuel_bill_image1)
+                         <a href="{{$fuel->fuel_bill_image1 }}" target="_blank"><img class="img-rounded" style="width: 100px; height: 100px;" src="{{ $fuel->fuel_bill_image1 }}" ></a>@endif
                         </div>
                     </div>
                 <div class="form-group">

@@ -9,6 +9,7 @@ use Illuminate\Routing\Route;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use SebastianBergmann\Environment\Console;
 
 class StaffController extends Controller {
 
@@ -71,7 +72,8 @@ class StaffController extends Controller {
                 $checked_status = $user->is_active ? "checked" : '';
                 $usersArray[$i]['status'] = "<label class='switch'><input  type='checkbox' class='user_status' id=" . $user->id . " data-status=" . $user->is_active . " " . $checked_status . "><span class='slider round'></span></label>";
                 $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.staff.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>'
-                . '<a class="btn btn-primary btn-xs" href="' . route('admin.staff.change-password', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Change Password</a>';
+                . '<a class="btn btn-primary btn-xs" href="' . route('admin.staff.change-password', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Change Password</a>'
+                . '<a href="javaScript:void(0);" class="btn btn-danger btn-xs delete" id="' . $user->id . '" ><i class="fa fa-trash"></i> Delete </a>';
                 $i++;
             }
 
@@ -270,5 +272,12 @@ class StaffController extends Controller {
         ]);
     }
 
-
+    public function deleteUser(Request $request) {
+        $user = User::find($request->id);
+        if ($user->delete()) {
+            return ['status' => true, "message" => "User Removed."];
+        } else {
+            return ['status' => false, "message" => "Something went be wrong."];
+        }
+    }
 }

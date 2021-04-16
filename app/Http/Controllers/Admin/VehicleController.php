@@ -75,7 +75,8 @@ class VehicleController extends Controller {
                     $average = $average1 / $count ;
                 }
                 $usersArray[$i]['vehicle_milage'] = number_format($average, 2, '.', ',');
-                $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.vehicle.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('admin.vehicle.issue', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Issue</a>';
+                $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('admin.vehicle.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a><a class="btn btn-info btn-xs" href="' . route('admin.vehicle.issue', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Issue</a>'
+                . '<a href="javaScript:void(0);" class="btn btn-danger btn-xs delete" id="' . $user->id . '" ><i class="fa fa-trash"></i> Delete </a>';
                 $i++;
             }
             $data['data'] = $usersArray;
@@ -132,7 +133,7 @@ class VehicleController extends Controller {
                     return redirect()->route('admin.vehicle.index', $id)->with('error', 'Something went be wrong.');
                 }
             }
-            $user = User::where('id',$vehicle->user_id)->first();
+            $user = User::where('id',$vehicle->user_id)->withTrashed()->first();
             // $parts = VehicleIssuePart::where('vehicle_issue_id',$id)->get();
             $veh = Vehicle::where('id',$vehicle->vehicle_id)->first();
             $css = [
@@ -341,4 +342,12 @@ class VehicleController extends Controller {
         }
     }
 
+    public function deleteVehicle(Request $request) {
+        $vehicle = Vehicle::find($request->id);
+        if ($vehicle->delete()) {
+            return ['status' => true, "message" => "Vehicle Removed."];
+        } else {
+            return ['status' => false, "message" => "Something went be wrong."];
+        }
+    }
 }

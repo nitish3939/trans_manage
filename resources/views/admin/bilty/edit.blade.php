@@ -19,39 +19,39 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Consignor Name*</label>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <input type="text" class="form-control" placeholder="Consignor Name" name="consignor_name" value="{{ $bilty->consignor_name }}" id="consignor_name">
+                                <input type="text" class="form-control" placeholder="Consignor Name" name="consignor_name" required value="{{ $bilty->consignor_name }}" id="consignor_name">
                             </div>
                         </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Consignor Address*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Consignor Address" name="consignor_address" value="{{ $bilty->consignor_address }}" id="consignor_address">
+                            <input type="text" class="form-control" placeholder="Consignor Address" name="consignor_address" required value="{{ $bilty->consignor_address }}" id="consignor_address">
                         </div>
                     </div>
                  
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Consignor Gst*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Consignor Gst" name="consignor_gst" value="{{ $bilty->consignor_gst }}" id="consignor_gst">
+                            <input type="text" class="form-control" placeholder="Consignor Gst" name="consignor_gst" required value="{{ $bilty->consignor_gst }}" id="consignor_gst">
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Consignee Name*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Consignee Name" name="consignee_name" value="{{ $bilty->consignee_name }}" id="consignee_name">
+                            <input type="text" class="form-control" placeholder="Consignee Name" name="consignee_name" required value="{{ $bilty->consignee_name }}" id="consignee_name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Consignee Address*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Consignee Address" name="consignee_address" value="{{ $bilty->consignee_address }}" id="consignee_address">
+                            <input type="text" class="form-control" placeholder="Consignee Address" name="consignee_address" required value="{{ $bilty->consignee_address }}" id="consignee_address">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Consignee Gst*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Consignee Gst" name="consignee_gst" value="{{ $bilty->consignee_gst }}" id="consignee_gst">
+                            <input type="text" class="form-control" placeholder="Consignee Gst" name="consignee_gst" required value="{{ $bilty->consignee_gst }}" id="consignee_gst">
                         </div>
                     </div>
                     <div class="ln_solid"></div>
@@ -71,25 +71,25 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">GR No.*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="number" class="form-control" placeholder="GR No." name="gr_no" value="{{ $bilty->gr_no }}" id="gr_no">
+                            <input type="number" class="form-control" placeholder="GR No." name="gr_no" required value="{{ $bilty->gr_no }}" id="gr_no">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Invoice No*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="number" class="form-control" placeholder="Invoice No" name="invoice_no" value="{{ $bilty->invoice_no }}" id="invoice_no">
+                            <input type="number" class="form-control" placeholder="Invoice No" required name="invoice_no" value="{{ $bilty->invoice_no }}" id="invoice_no">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Eway Bill No*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Eway Bill No"  name="eway_bill_no" value="{{ $bilty->eway_bill_no }}" id="eway_bill_no">
+                            <input type="text" class="form-control" placeholder="Eway Bill No"  required name="eway_bill_no" value="{{ $bilty->eway_bill_no }}" id="eway_bill_no">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Value*</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Value</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="number" class="form-control" placeholder="value" name="value" value="{{ $bilty->value }}" id="value">
+                            <input type="number" class="form-control" placeholder="value"  name="value" value="{{ $bilty->value }}" id="value">
                         </div>
                     </div>
                     <div class="form-group">
@@ -107,7 +107,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Delivery At*</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" class="form-control" placeholder="Delivery At" name="delivery_at" value="{{ $bilty->delivery_at }}" id="delivery_at">
+                            <input type="text" class="form-control" placeholder="Delivery At" required name="delivery_at" value="{{ $bilty->delivery_at }}" id="delivery_at">
                         </div>
                     </div>  
 

@@ -348,7 +348,7 @@ class TripController extends Controller {
                 $trip->end_trip_location = $request->location;
                 $trip->end_fuel_entry = $request->end_meter_fuel;
                 $trip->end_km = $request->end_meter_km;
-                
+                $trip->is_read = 3;
                 $trip->save();
            
             return $this->sendSuccessResponse("End Trip Sucessfully",  (object) []);

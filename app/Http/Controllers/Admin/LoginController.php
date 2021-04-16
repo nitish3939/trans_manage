@@ -139,7 +139,7 @@ class LoginController extends Controller {
                 }
 
                 $user = User::find($request->get('record_id'));
-                $user->user_name = $request->get("user_name");
+                $user->first_name = $request->get("user_name");
                 $user->email_id = $request->get("email_id");
                 if ($request->hasFile("profile_pic")) {
                     $profile_pic = $request->file("profile_pic");

@@ -66,8 +66,11 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Challan preview</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <a href="{{$challan->challan_pic }}" target="_blank"><img  style="width: 100px; height: 100px;" src="{{$challan->challan_pic }}" ></a>
+                        @if($challan->challan_pic1)
+                        <a href="{{$challan->challan_pic1 }}" target="_blank"><img  style="width: 100px; height: 100px;" src="{{$challan->challan_pic1 }}" ></a>@endif
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Challan Description</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">

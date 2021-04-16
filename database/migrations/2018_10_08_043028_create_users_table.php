@@ -39,6 +39,7 @@ class CreateUsersTable extends Migration {
             $table->string('created_by')->default(0);
             $table->string('updated_by')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

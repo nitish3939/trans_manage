@@ -134,7 +134,6 @@
                     maxlength: 10,
                 },
                 staff_email: {
-                    required: true,
                     email: true
                 },
 

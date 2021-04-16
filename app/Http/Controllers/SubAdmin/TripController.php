@@ -94,6 +94,13 @@ class TripController extends Controller {
                     }else{
                         $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.trip.edit', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Edit</a>';
                     }
+                 }elseif($user->is_read == 3){
+                    $usersArray[$i]['status'] = '<a class="btn btn-warning btn-xs">Completed</a>';
+                    if($ob){
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.trip.view', ['id' => $user->id]) . '"><i class="fa fa-eye"></i>View</a><a class="btn btn-info btn-xs" href="' . route('subadmin.trip.fuel', ['id' => $user->id]) . '"><i class="fa fa-pencil"></i>Fuel</a>';
+                    }else{
+                        $usersArray[$i]['view-deatil'] = '<a class="btn btn-info btn-xs" href="' . route('subadmin.trip.view', ['id' => $user->id]) . '"><i class="fa fa-eye"></i>View</a>';
+                    }
                  }
 
                
